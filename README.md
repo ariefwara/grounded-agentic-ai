@@ -4,7 +4,7 @@
 
 Google Cloud Rapid Agent Hackathon - Arize track.
 
-## Initial Idea
+## Overview
 
 Grounded Agentic AI is an AI review agent for sensitive business information that can only answer using approved content and response styles defined in configuration and source documents. The agent uses Gemini, Google Cloud, and Arize to trace outputs, evaluate every response against approved sources, drop non-compliant answers, and retry until it produces an audit-ready response for customers or employees.
 
@@ -15,6 +15,15 @@ Companies often need to distribute sensitive information to customers or employe
 ## Example Use Case: Verified Support
 
 One primary use case is Verified Support: customer support responses that must be checked against approved support policies, product documentation, refund rules, incident notes, and response style guidelines before they are sent.
+
+Other possible use cases include:
+
+- Employee policy answers.
+- Incident customer updates.
+- Sales or RFP responses.
+- Security questionnaire responses.
+- Partner and vendor communication.
+- Public statement review.
 
 ## Core Rule
 
@@ -37,13 +46,12 @@ If the generated response does not comply, the system must drop it and retry. Su
 6. If the answer fails, it is dropped and regenerated.
 7. If the answer passes, the system returns an audit-ready response.
 
-## Draft Form Answer
+## Technology
 
-I plan to build Grounded Agentic AI, an AI review agent for sensitive business information that can only answer using approved content and response styles defined in configuration and source documents. The agent will use Gemini, Google Cloud, and Arize to trace outputs, evaluate every response against those approved sources, drop non-compliant answers, and retry until it produces an audit-ready response for customers or employees.
-
-## Additional Support Needed
-
-Access to Google Cloud credits, clear Arize setup guidance, and example evaluation templates for groundedness, hallucination detection, and policy/style compliance would help complete the submission more effectively. Sample traces or reference architectures for production AI agents would also be useful for building a credible demo and audit workflow.
+- Gemini for answer generation and review loops.
+- Google Cloud for deployment and runtime services.
+- Arize for traces, evaluations, and audit visibility.
+- Source documents and configuration rules as the approved response boundary.
 
 ## Secret Handling
 
