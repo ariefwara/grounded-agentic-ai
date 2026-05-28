@@ -6,11 +6,25 @@ Google Cloud Rapid Agent Hackathon - Arize track.
 
 ## Overview
 
-Grounded Agentic AI is an AI review agent for sensitive business information that can only answer using approved content and response styles defined in configuration and source documents. The agent uses Gemini, Google Cloud, and Arize to trace outputs, evaluate every response against approved sources, drop non-compliant answers, and retry until it produces an audit-ready response for customers or employees.
+Grounded Agentic AI is an approval gate for sensitive AI-generated business responses. It prevents unsupported, off-policy, or wrongly phrased answers from being sent by tracing, evaluating, dropping, and retrying responses before delivery.
+
+Unlike a normal customer support chatbot, Grounded Agentic AI is designed for situations where the answer must be correct, source-backed, and phrased according to approved business rules before it reaches a customer, employee, partner, or public audience.
+
+The agent uses Gemini, Google Cloud, and Arize to generate controlled responses, evaluate them against approved sources, keep audit traces, and retry failed outputs until the response is ready to send.
 
 ## Core Problem
 
-Companies often need to distribute sensitive information to customers or employees, but ordinary AI assistants can phrase things incorrectly, overstate claims, hallucinate unsupported facts, or answer outside approved policy. For sensitive communication, the problem is not just whether the answer sounds good, but whether it is allowed, grounded, and written in the approved way.
+Companies want AI to help with communication, but they cannot allow AI to freely answer sensitive questions with unsupported claims, risky wording, or inconsistent policy interpretation.
+
+For high-stakes business communication, the question is not only:
+
+> Does the answer sound helpful?
+
+The real question is:
+
+> Is this answer allowed to be sent?
+
+Grounded Agentic AI treats every generated response as a candidate that must pass evidence, policy, and style checks before delivery.
 
 ## Example Use Case: Verified Support
 
