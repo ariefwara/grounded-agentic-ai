@@ -65,13 +65,4 @@ If the generated response does not comply, the system must drop it and retry. Su
 
 ## Secret Handling
 
-Real credentials must stay outside the repository. Local development should use a private `.env` file copied from `.env.example`, while production should use Google Cloud Secret Manager or Cloud Run environment secrets.
-
-Required local variables:
-
-- `GOOGLE_CLOUD_PROJECT`
-- `GOOGLE_CLOUD_LOCATION`
-- `GEMINI_API_KEY`
-- `ARIZE_KEY`
-- `ARIZE_SPACE_ID`
-- `GITHUB_TOKEN`
+Real credentials must stay outside the repository. Local development should use private environment variables, while production should use a managed secret store such as Google Cloud Secret Manager or Cloud Run environment secrets.
