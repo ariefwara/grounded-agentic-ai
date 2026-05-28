@@ -62,7 +62,3 @@ If the generated response does not comply, the system must drop it and retry. Su
 - Google Cloud for deployment and runtime services.
 - Arize for traces, evaluations, and audit visibility.
 - Source documents and configuration rules as the approved response boundary.
-
-## Secret Handling
-
-Real credentials must stay outside the repository. Local development should use private environment variables, while production should use a managed secret store such as Google Cloud Secret Manager or Cloud Run environment secrets.
