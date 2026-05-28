@@ -1,0 +1,49 @@
+{
+  "evaluators": [
+    {
+      "name": "groundedness",
+      "type": "llm_judge",
+      "scope": "response",
+      "purpose": "Checks whether every factual claim in the answer is supported by the approved source context.",
+      "pass_condition": "All factual claims are directly supported by the provided source context.",
+      "fail_action": "drop_and_retry"
+    },
+    {
+      "name": "unsupported_claim",
+      "type": "llm_judge",
+      "scope": "response",
+      "purpose": "Detects claims that are not present in the approved documents or retrieved source context.",
+      "pass_condition": "No unsupported claims are present.",
+      "fail_action": "drop_and_retry"
+    },
+    {
+      "name": "policy_compliance",
+      "type": "rule_and_llm_judge",
+      "scope": "response",
+      "purpose": "Checks whether the answer follows the configured business rules for the selected audience and channel.",
+      "pass_condition": "The answer follows all required policy rules.",
+      "fail_action": "drop_and_retry"
+    },
+    {
+      "name": "style_compliance",
+      "type": "llm_judge",
+      "scope": "response",
+      "purpose": "Checks whether the answer matches the approved response style.",
+      "pass_condition": "Tone, structure, and wording match the configured response style.",
+      "fail_action": "drop_and_retry"
+    },
+    {
+      "name": "answer_boundary",
+      "type": "code_and_llm_judge",
+      "scope": "response",
+      "purpose": "Checks that the answer does not go beyond the allowed source and configuration boundary.",
+      "pass_condition": "The response stays within approved content and allowed response behavior.",
+      "fail_action": "drop_and_retry"
+    }
+  ],
+  "gate": {
+    "delivery_rule": "all_evaluators_must_pass",
+    "max_retries": 3,
+    "on_final_failure": "return_no_approved_answer"
+  }
+}

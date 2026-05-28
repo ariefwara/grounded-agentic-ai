@@ -62,3 +62,8 @@ If the generated response does not comply, the system must drop it and retry. Su
 - Google Cloud for deployment and runtime services.
 - Arize for traces, evaluations, and audit visibility.
 - Source documents and configuration rules as the approved response boundary.
+
+## Project Notes
+
+- [Arize integration](docs/arize-integration.md)
+- [Evaluator configuration](config/evaluators.json)
