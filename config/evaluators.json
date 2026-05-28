@@ -1,6 +1,14 @@
 {
   "evaluators": [
     {
+      "name": "question_scope",
+      "type": "rule_and_llm_judge",
+      "scope": "request",
+      "purpose": "Checks whether the incoming question is allowed to be answered under the configured business scope.",
+      "pass_condition": "The question matches an allowed topic, audience, and channel.",
+      "fail_action": "standard_response"
+    },
+    {
       "name": "groundedness",
       "type": "llm_judge",
       "scope": "response",
@@ -44,6 +52,7 @@
   "gate": {
     "delivery_rule": "all_evaluators_must_pass",
     "max_retries": 3,
+    "on_scope_failure": "return_standard_response",
     "on_final_failure": "return_no_approved_answer"
   }
 }

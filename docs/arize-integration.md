@@ -16,14 +16,16 @@ Grounded Agentic AI uses Arize as the evaluation and audit layer for AI-generate
 Each request should produce one trace with these spans:
 
 1. `request.received`
-2. `source.retrieve`
-3. `response.generate`
-4. `response.evaluate.groundedness`
-5. `response.evaluate.policy`
-6. `response.evaluate.style`
-7. `response.gate`
-8. `response.retry` when needed
-9. `response.approved` when the answer passes
+2. `request.scope_check`
+3. `response.standard_reply` when the request is outside approved scope
+4. `source.retrieve`
+5. `response.generate`
+6. `response.evaluate.groundedness`
+7. `response.evaluate.policy`
+8. `response.evaluate.style`
+9. `response.gate`
+10. `response.retry` when needed
+11. `response.approved` when the answer passes
 
 ## Gate Decision
 
@@ -57,7 +59,7 @@ Only these Arize capabilities are required for the first version:
 
 - Create or reuse one project.
 - Send traces and spans for every response attempt.
-- Run groundedness, policy, and style evaluators.
+- Run scope, groundedness, policy, and style evaluators.
 - Store pass/fail evaluator results on the trace.
 - Build datasets from failed and approved examples.
 - Run experiments before changing prompts or evaluator rules.

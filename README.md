@@ -39,22 +39,27 @@ Other possible use cases include:
 
 The AI may only answer with:
 
+- Questions that are allowed by the configured response scope.
 - Claims explicitly supported by approved documents.
 - Response styles explicitly allowed by configuration.
 - Wording patterns that match the intended audience and channel.
 - Outputs that pass automated review before delivery.
+
+The system must also decide which questions should be answered and which questions should not be answered. If a question is outside the approved scope, the AI must not improvise; it must return a configured standard response.
 
 If the generated response does not comply, the system must drop it and retry. Supervision happens through audit logs and evaluation traces, not constant manual human review.
 
 ## How It Works
 
 1. A user requests a customer-facing or employee-facing answer.
-2. The agent retrieves approved source documents and configuration rules.
-3. Gemini drafts a response using only the allowed content and style.
-4. Arize traces the request, source context, generated answer, and evaluation result.
-5. Evaluators check whether the answer is grounded, compliant, and written in the approved style.
-6. If the answer fails, it is dropped and regenerated.
-7. If the answer passes, the system returns an audit-ready response.
+2. The agent checks whether the question is allowed to be answered.
+3. If the question is outside scope, the system returns the configured standard response.
+4. If the question is allowed, the agent retrieves approved source documents and configuration rules.
+5. Gemini drafts a response using only the allowed content and style.
+6. Arize traces the request, source context, generated answer, and evaluation result.
+7. Evaluators check whether the answer is grounded, compliant, and written in the approved style.
+8. If the answer fails, it is dropped and regenerated.
+9. If the answer passes, the system returns an audit-ready response.
 
 ## Technology
 
@@ -67,3 +72,4 @@ If the generated response does not comply, the system must drop it and retry. Su
 
 - [Arize integration](docs/arize-integration.md)
 - [Evaluator configuration](config/evaluators.json)
+- [Response scope configuration](config/response-scope.json)
