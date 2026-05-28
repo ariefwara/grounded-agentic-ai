@@ -16,6 +16,24 @@ Grounded Agentic AI focuses on a simple business question:
 
 The system is built around approved business context, controlled response behavior, and reviewable decisions. It helps ensure that AI responses stay aligned with the information, audience, and communication rules defined by the organization.
 
+## Capability Areas
+
+- Identity and Context Resolution
+- Request Understanding
+- Semantic Question Matching
+- Request Type Classification
+- Retrieval and Query Governance
+- Information Classification
+- Information Eligibility
+- Action Eligibility
+- Approved Answer Boundary
+- Semantic Answer Equivalence
+- Intermediate Output Gating
+- Response Evaluation
+- Drop, Retry, or Standard Response
+- Standard Response
+- Audit Trail
+
 ## Technology
 
 - Gemini
