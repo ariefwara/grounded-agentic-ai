@@ -1,9 +1,5 @@
 # Grounded Agentic AI
 
-## Competition
-
-Google Cloud Rapid Agent Hackathon - Arize track.
-
 ## Overview
 
 Grounded Agentic AI is an approval gate for sensitive AI-generated business responses. It prevents unsupported, off-policy, or wrongly phrased answers from being sent by tracing, evaluating, dropping, and retrying responses before delivery.
