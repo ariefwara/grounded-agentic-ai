@@ -1,4 +1,4 @@
-# Agentic Verified Support
+# Grounded Agentic AI
 
 ## Competition
 
@@ -6,11 +6,15 @@ Google Cloud Rapid Agent Hackathon - Arize track.
 
 ## Initial Idea
 
-Agentic Verified Support is an AI review agent for sensitive business information that can only answer using approved content and response styles defined in configuration and source documents. The agent uses Gemini, Google Cloud, and Arize to trace outputs, evaluate every response against approved sources, drop non-compliant answers, and retry until it produces an audit-ready response for customers or employees.
+Grounded Agentic AI is an AI review agent for sensitive business information that can only answer using approved content and response styles defined in configuration and source documents. The agent uses Gemini, Google Cloud, and Arize to trace outputs, evaluate every response against approved sources, drop non-compliant answers, and retry until it produces an audit-ready response for customers or employees.
 
 ## Core Problem
 
 Companies often need to distribute sensitive information to customers or employees, but ordinary AI assistants can phrase things incorrectly, overstate claims, hallucinate unsupported facts, or answer outside approved policy. For sensitive communication, the problem is not just whether the answer sounds good, but whether it is allowed, grounded, and written in the approved way.
+
+## Example Use Case: Verified Support
+
+One primary use case is Verified Support: customer support responses that must be checked against approved support policies, product documentation, refund rules, incident notes, and response style guidelines before they are sent.
 
 ## Core Rule
 
@@ -35,7 +39,7 @@ If the generated response does not comply, the system must drop it and retry. Su
 
 ## Draft Form Answer
 
-I plan to build an AI review agent for sensitive business information that can only answer using approved content and response styles defined in configuration and source documents. The agent will use Gemini, Google Cloud, and Arize to trace outputs, evaluate every response against those approved sources, drop non-compliant answers, and retry until it produces an audit-ready response for customers or employees.
+I plan to build Grounded Agentic AI, an AI review agent for sensitive business information that can only answer using approved content and response styles defined in configuration and source documents. The agent will use Gemini, Google Cloud, and Arize to trace outputs, evaluate every response against those approved sources, drop non-compliant answers, and retry until it produces an audit-ready response for customers or employees.
 
 ## Additional Support Needed
 
