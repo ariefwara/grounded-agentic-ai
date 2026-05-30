@@ -39,3 +39,39 @@ The system is built around approved business context, controlled response behavi
 - Gemini
 - Google Cloud
 - Arize
+
+## Project Structure
+
+This repository is organized as multiple independent npm projects. There is no
+root `package.json`; run npm commands from each project folder.
+
+- `engine/` - main policy-first decision engine.
+- `engine/tools/` - engine-owned tools and connectors to external systems.
+- `apps/web-chat/` - frontend chat UI skeleton.
+- `apps/simulator/` - simulation project for policy and request scenarios.
+- `apps/document-management/` - document management system skeleton.
+- `docs/` - product scope, writing guidance, feature documents, and prompts.
+- `scripts/` - repository-level documentation tooling.
+
+## Local Commands
+
+```bash
+cd engine
+npm test
+npm start
+```
+
+```bash
+cd apps/web-chat
+npm start
+```
+
+```bash
+cd apps/simulator
+npm start
+```
+
+```bash
+cd apps/document-management
+npm start
+```

@@ -1,0 +1,29 @@
+[
+  {
+    "id": "unmatched_question",
+    "reasonCodes": [
+      "no_approved_question_match"
+    ],
+    "message": "I cannot answer that request from the approved information available."
+  },
+  {
+    "id": "not_eligible",
+    "reasonCodes": [
+      "user_not_eligible",
+      "action_channel_not_allowed",
+      "action_not_available"
+    ],
+    "message": "I cannot provide that information or complete that action in this context."
+  },
+  {
+    "id": "generic_unavailable",
+    "reasonCodes": [
+      "unknown_information_class",
+      "missing_eligibility_rule",
+      "missing_answer_boundary",
+      "missing_answer_for_evaluation",
+      "required_phrase_missing"
+    ],
+    "message": "I cannot answer that request from the approved information available."
+  }
+]

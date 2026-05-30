@@ -1,0 +1,14 @@
+{
+  "name": "grounded-web-chat",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Frontend chat UI for Grounded Agentic AI.",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "node src/index.js"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

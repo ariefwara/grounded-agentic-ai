@@ -1,0 +1,14 @@
+{
+  "name": "grounded-simulator",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Simulation app for policy, identity, request, and gate scenarios.",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "node src/index.js"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

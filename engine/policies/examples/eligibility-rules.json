@@ -1,0 +1,33 @@
+[
+  {
+    "id": "any_channel",
+    "allowedChannels": [
+      "web-chat",
+      "email",
+      "whatsapp"
+    ]
+  },
+  {
+    "id": "verified_customer_or_public_channel",
+    "requiredIdentityConfidence": [
+      "verified_customer",
+      "partially_verified"
+    ],
+    "allowedChannels": [
+      "web-chat",
+      "email",
+      "whatsapp"
+    ]
+  },
+  {
+    "id": "verified_account_owner",
+    "requiredIdentityConfidence": [
+      "verified_customer"
+    ],
+    "requireAccountOwnership": true,
+    "allowedChannels": [
+      "web-chat",
+      "email"
+    ]
+  }
+]
