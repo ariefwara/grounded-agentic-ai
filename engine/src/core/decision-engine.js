@@ -1,7 +1,7 @@
 import { createAuditTrail } from "../audit/audit-writer.js";
 import { runPipeline } from "./pipeline.js";
 
-export function createDecisionEngine({ policies, auditWriter = createAuditTrail() }) {
+export function createDecisionEngine({ policies, auditWriter = createAuditTrail(), llmClient = null }) {
   return {
     async evaluate(input) {
       const state = {
@@ -9,6 +9,8 @@ export function createDecisionEngine({ policies, auditWriter = createAuditTrail(
         policies,
         audit: auditWriter,
         decisions: [],
+        llmClient,
+        env: process.env,
       };
 
       const result = await runPipeline(state);

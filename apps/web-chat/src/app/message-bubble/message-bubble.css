@@ -1,0 +1,109 @@
+:host {
+  display: block;
+}
+
+.message-text {
+  margin: 0;
+  max-height: none;
+  overflow-wrap: anywhere;
+  word-break: normal;
+}
+
+.message-text :where(p, ul, ol, pre, blockquote) {
+  margin: 0;
+}
+
+.message-text :where(p + p, p + ul, p + ol, ul + p, ol + p, pre + p) {
+  margin-top: 0.55rem;
+}
+
+.message-text :where(ul, ol) {
+  padding-left: 1.15rem;
+}
+
+.message-text :where(li + li) {
+  margin-top: 0.25rem;
+}
+
+.message-text :where(h1, h2, h3, h4) {
+  margin: 0 0 0.45rem;
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+.message-text :where(strong) {
+  font-weight: 700;
+}
+
+.message-text :where(em) {
+  font-style: italic;
+}
+
+.message-text :where(code) {
+  border-radius: 4px;
+  background: rgba(17, 27, 33, 0.08);
+  padding: 0.08rem 0.24rem;
+  font-size: 0.88em;
+}
+
+.message-text :where(pre) {
+  overflow-x: auto;
+  border-radius: 6px;
+  background: rgba(17, 27, 33, 0.08);
+  padding: 0.55rem;
+}
+
+.message-text :where(pre code) {
+  background: transparent;
+  padding: 0;
+}
+
+.typing-indicator {
+  display: flex;
+  width: 2.4rem;
+  min-height: 1.25rem;
+  align-items: center;
+  justify-content: center;
+  gap: 0.24rem;
+}
+
+.typing-indicator span {
+  width: 0.38rem;
+  height: 0.38rem;
+  border-radius: 999px;
+  background: #8696a0;
+  animation: typing-bounce 1.05s infinite ease-in-out;
+}
+
+.typing-indicator span:nth-child(2) {
+  animation-delay: 0.14s;
+}
+
+.typing-indicator span:nth-child(3) {
+  animation-delay: 0.28s;
+}
+
+@keyframes typing-bounce {
+  0%,
+  80%,
+  100% {
+    opacity: 0.35;
+    transform: translateY(0);
+  }
+
+  40% {
+    opacity: 1;
+    transform: translateY(-0.18rem);
+  }
+}
+
+.incoming-bubble {
+  background: #ffffff;
+  border-top-left-radius: 2px;
+}
+
+.outgoing-bubble {
+  background: #d9fdd3;
+  border-top-right-radius: 2px;
+}

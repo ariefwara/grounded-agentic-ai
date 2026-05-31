@@ -1,5 +1,10 @@
-# Grounded Web Chat
+# Web Chat
 
-Frontend chat UI for testing and demonstrating governed AI communication.
+Angular chat UI for testing and demonstrating AI communication.
 
-This is intentionally a skeleton npm project for now.
+Run from this folder:
+
+```bash
+npm install
+npm start
+```

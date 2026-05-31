@@ -22,7 +22,8 @@
       "missing_eligibility_rule",
       "missing_answer_boundary",
       "missing_answer_for_evaluation",
-      "required_phrase_missing"
+      "required_phrase_missing",
+      "llm_request_failed"
     ],
     "message": "I cannot answer that request from the approved information available."
   }

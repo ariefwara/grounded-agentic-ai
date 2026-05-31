@@ -1,15 +1,18 @@
 {
-  "name": "grounded-engine",
+  "name": "engine",
   "version": "0.1.0",
   "private": true,
   "type": "module",
-  "description": "Policy-first Node.js engine for governed AI business communication.",
+  "description": "Policy-first Node.js engine for AI business communication.",
   "scripts": {
-    "start": "node src/index.js",
+    "start": "node src/server.js",
     "test": "node --test tests/*.test.js",
     "demo": "node src/index.js"
   },
   "engines": {
     "node": ">=20"
+  },
+  "dependencies": {
+    "express": "^5.2.1"
   }
 }

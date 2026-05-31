@@ -1,12 +1,15 @@
 import { createDecisionEngine } from "./core/decision-engine.js";
 import { loadPolicyBundle } from "./core/policy-loader.js";
+import { loadEnvFiles } from "./config/env-loader.js";
+import { createLlmClient } from "./llm/llm-client.js";
 
 export { createDecisionEngine } from "./core/decision-engine.js";
 export { loadPolicyBundle } from "./core/policy-loader.js";
 
 if (import.meta.url === `file://${process.argv[1]}`) {
+  await loadEnvFiles();
   const policies = await loadPolicyBundle("policies/examples");
-  const engine = createDecisionEngine({ policies });
+  const engine = createDecisionEngine({ policies, llmClient: createLlmClient() });
 
   const result = await engine.evaluate({
     requestId: "demo-001",

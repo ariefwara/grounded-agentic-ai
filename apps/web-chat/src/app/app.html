@@ -1,0 +1,7 @@
+<main class="chat-shell" data-theme="chat">
+  <section class="chat-layout">
+    <app-chat-header />
+    <app-message-list [messages]="messages()" />
+    <app-chat-composer (messageSent)="sendMessage($event.body, $event.requestId)" (typing)="playTypingSound()" />
+  </section>
+</main>

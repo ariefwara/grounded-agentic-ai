@@ -1,0 +1,26 @@
+<div class="chat" [class.chat-end]="message().sender === 'user'" [class.chat-start]="message().sender === 'assistant'">
+  <div
+    class="chat-bubble max-w-[88vw] rounded-lg px-3 py-2 text-[0.95rem] leading-relaxed text-[#111b21] shadow-sm sm:max-w-[78vw] lg:max-w-[68vw] xl:max-w-[60vw]"
+    [class.outgoing-bubble]="message().sender === 'user'"
+    [class.incoming-bubble]="message().sender === 'assistant'"
+  >
+    @if (message().pending) {
+      <div class="typing-indicator" aria-hidden="true">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    } @else {
+      <div class="message-text" [innerHTML]="renderedBody()"></div>
+      <div class="mt-1 flex items-center justify-end gap-1 text-[0.68rem] text-[#667781]">
+        <span>{{ message().time }}</span>
+        @if (message().sender === 'user') {
+          <svg class="h-3.5 w-5" [class.text-[#53bdeb]]="message().status === 'read'" viewBox="0 0 24 12" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8">
+            <path d="m1 6 3.2 3.2L10.5 2" />
+            <path d="m8 6 3.2 3.2L21.5 2" />
+          </svg>
+        }
+      </div>
+    }
+  </div>
+</div>

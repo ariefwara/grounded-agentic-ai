@@ -1,0 +1,55 @@
+name: ai-assistant
+
+services:
+  engine:
+    build:
+      context: ./engine
+    container_name: engine
+    environment:
+      NODE_ENV: production
+      PORT: 3000
+      LLM_PROVIDER: ${LLM_PROVIDER:-vertex}
+      LLM_API_KEY: ${LLM_API_KEY:-}
+      LLM_MODEL: ${LLM_MODEL:-}
+      LLM_BASE_URL: ${LLM_BASE_URL:-}
+      LLM_TEMPERATURE: ${LLM_TEMPERATURE:-0.2}
+      LLM_MAX_TOKENS: ${LLM_MAX_TOKENS:-300}
+      GEMINI_API_KEY: ${GEMINI_API_KEY:-}
+      GEMINI_MODEL: ${GEMINI_MODEL:-}
+      GCP_PROJECT: ${GCP_PROJECT:-ariefwrz}
+      VERTEX_LOCATION: ${VERTEX_LOCATION:-global}
+      VERTEX_TEXT_MODEL: ${VERTEX_TEXT_MODEL:-gemini-2.5-flash}
+    ports:
+      - "3000:3000"
+
+  web-chat:
+    build:
+      context: ./apps/web-chat
+    container_name: web-chat
+    environment:
+      NODE_ENV: development
+      ENGINE_URL: http://engine:3000
+    ports:
+      - "4200:4200"
+    depends_on:
+      - engine
+
+  simulator:
+    build:
+      context: ./apps/simulator
+    container_name: simulator
+    environment:
+      NODE_ENV: production
+      ENGINE_URL: http://engine:3000
+    depends_on:
+      - engine
+
+  document-management:
+    build:
+      context: ./apps/document-management
+    container_name: document-management
+    environment:
+      NODE_ENV: production
+      PORT: 3001
+    ports:
+      - "3001:3001"
