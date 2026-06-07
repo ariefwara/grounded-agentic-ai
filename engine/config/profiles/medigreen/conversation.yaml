@@ -1,0 +1,13 @@
+guidedResponses: true
+decisionGuidance: Clarify which medicine needs attention, compare each prescription status, explain available next steps, and request prescriber approval only when required.
+identification:
+  mode: patient
+  requiredBeforeData: true
+  fields:
+    - phone
+verification:
+  required: true
+  fields:
+    - dateOfBirth
+  minimumMatches: 1
+verificationQuestion: Please confirm the patient's date of birth.

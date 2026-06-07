@@ -4,6 +4,8 @@ import { ChatHeader } from './chat-header/chat-header';
 import { MessageList } from './message-list/message-list';
 import { EngineClient } from './shared/engine-client.service';
 import { ChatMessage } from './shared/chat-message.model';
+import { ChatProfile } from './shared/chat-profile.model';
+import { ChatProfileService } from './shared/chat-profile.service';
 
 type AudioWindow = Window &
   typeof globalThis & {
@@ -21,8 +23,14 @@ export class App {
   private audioContext?: AudioContext;
   private lastTypingSoundAt = 0;
 
-  constructor(private readonly engineClient: EngineClient) {}
+  constructor(
+    private readonly engineClient: EngineClient,
+    profileService: ChatProfileService,
+  ) {
+    this.profile = profileService.profile;
+  }
 
+  protected readonly profile: ChatProfile;
   protected readonly messages = signal<ChatMessage[]>([]);
 
   @HostListener('window:message', ['$event'])

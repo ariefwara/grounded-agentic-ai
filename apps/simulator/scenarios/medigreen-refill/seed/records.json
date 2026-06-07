@@ -1,0 +1,38 @@
+[
+  {
+    "id": "prescription-RX-4412",
+    "topic": "prescription",
+    "title": "Prescription RX-4412",
+    "summary": "Prescription RX-4412 has no refills remaining and requires prescriber approval."
+  },
+  {
+    "id": "prescription-RX-4413",
+    "topic": "prescription",
+    "title": "Prescription RX-4413",
+    "summary": "Prescription RX-4413 has two refills remaining and can be prepared after insurance review."
+  },
+  {
+    "id": "prescription-RX-4414",
+    "topic": "prescription",
+    "title": "Prescription RX-4414",
+    "summary": "Prescription RX-4414 is ready for pickup until June 10."
+  },
+  {
+    "id": "prescription-RX-4415",
+    "topic": "prescription",
+    "title": "Prescription RX-4415",
+    "summary": "Prescription RX-4415 is on hold pending insurance clarification."
+  },
+  {
+    "id": "prescription-RX-4416",
+    "topic": "prescription",
+    "title": "Prescription RX-4416",
+    "summary": "Prescription RX-4416 has one refill remaining and can be prepared today."
+  },
+  {
+    "id": "prescription-RX-4417",
+    "topic": "prescription",
+    "title": "Prescription RX-4417",
+    "summary": "Prescription RX-4417 was transferred to another pharmacy on June 3."
+  }
+]

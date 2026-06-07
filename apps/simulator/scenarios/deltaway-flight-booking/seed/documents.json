@@ -1,0 +1,20 @@
+[
+  {
+    "id": "doc-new-booking",
+    "topic": "new flight booking",
+    "title": "New Flight Booking Guide",
+    "excerpt": "A new booking requires the route, travel date, selected flight, traveler name, and traveler email."
+  },
+  {
+    "id": "doc-main-cabin-fares",
+    "topic": "Main Cabin",
+    "title": "Main Cabin Fare Guide",
+    "excerpt": "Main Cabin fares include a carry-on bag. Price and seat availability vary by flight."
+  },
+  {
+    "id": "doc-flight-selection",
+    "topic": "flight selection",
+    "title": "Flight Selection Guide",
+    "excerpt": "The traveler should confirm the departure time and displayed fare before a new booking is created."
+  }
+]

@@ -1,10 +1,22 @@
 :host {
   display: block;
-  background: #f0f2f5;
+  background: var(--chat-composer);
   border-top: 1px solid rgb(17 27 33 / 0.08);
 }
 
 .composer {
   min-height: 68px;
   padding-bottom: max(0.75rem, env(safe-area-inset-bottom));
+}
+
+.send-button {
+  background: var(--chat-primary);
+}
+
+.send-button:hover {
+  background: var(--chat-primary-hover);
+}
+
+.chat-input:focus {
+  border-color: var(--chat-accent);
 }

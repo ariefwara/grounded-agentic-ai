@@ -1,4 +1,4 @@
-import { Component, ElementRef, output, viewChild } from '@angular/core';
+import { Component, ElementRef, input, output, viewChild } from '@angular/core';
 
 @Component({
   selector: 'app-chat-composer',
@@ -7,6 +7,7 @@ import { Component, ElementRef, output, viewChild } from '@angular/core';
   styleUrl: './chat-composer.css',
 })
 export class ChatComposer {
+  readonly placeholder = input('Type a message');
   readonly messageSent = output<{ body: string; requestId?: string }>();
   readonly typing = output<void>();
   private readonly messageInput = viewChild.required<ElementRef<HTMLInputElement>>('messageInput');

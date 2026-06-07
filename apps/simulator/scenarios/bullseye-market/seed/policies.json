@@ -1,0 +1,38 @@
+[
+  {
+    "id": "product-exchange",
+    "topic": "exchange different model wrong size does not fit does not like",
+    "title": "Small Appliance Product Exchange Policy",
+    "text": "A kitchen appliance may be exchanged for another model within 30 days when the customer provides the receipt, appliance, and all original accessories."
+  },
+  {
+    "id": "opened-product-condition",
+    "topic": "opened used appliance condition clean damaged complete accessories",
+    "title": "Opened Appliance Condition Policy",
+    "text": "An opened appliance is eligible for exchange after a service-desk condition check when it is clean, undamaged, and complete with all original accessories. Damaged or incomplete products require a separate return review."
+  },
+  {
+    "id": "exchange-price-difference",
+    "topic": "exchange replacement price difference upgrade cheaper expensive refund",
+    "title": "Exchange Price Difference Policy",
+    "text": "For an approved exchange, the customer pays the difference when the replacement costs more or receives the difference when the replacement costs less."
+  },
+  {
+    "id": "pickup-purchase",
+    "topic": "purchase buy order pickup selected product selected store",
+    "title": "Store Pickup Purchase Policy",
+    "text": "A pickup purchase may be placed after the customer confirms the exact product and store. The order confirmation must repeat the product, pickup store, and order number."
+  },
+  {
+    "id": "inventory-reservation",
+    "topic": "inventory stock available pickup reservation hold store",
+    "title": "Inventory Reservation Policy",
+    "text": "Displayed inventory is used to select a pickup store. Stock is only reserved after the pickup purchase is successfully placed."
+  },
+  {
+    "id": "warranty-guidance",
+    "topic": "warranty defect manufacturer coverage years",
+    "title": "Product Warranty Guidance Policy",
+    "text": "Warranty duration comes from the selected product specification. Warranty support applies to covered product defects and is separate from the 30-day exchange process."
+  }
+]

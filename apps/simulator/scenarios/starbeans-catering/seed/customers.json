@@ -1,0 +1,20 @@
+[
+  {
+    "id": "lead_starbeans_001",
+    "name": "Jordan Lee",
+    "phone": "5125550142",
+    "customerNumber": "LEAD-210"
+  },
+  {
+    "id": "lead_starbeans_002",
+    "name": "Maya Patel",
+    "phone": "5125550155",
+    "customerNumber": "LEAD-211"
+  },
+  {
+    "id": "lead_starbeans_003",
+    "name": "Chris Nguyen",
+    "phone": "5125550166",
+    "customerNumber": "LEAD-212"
+  }
+]

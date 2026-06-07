@@ -1,0 +1,14 @@
+guidedResponses: true
+decisionGuidance: Understand the damage and immediate safety needs, explain available claim steps and their purpose, then recommend the appropriate next action based on claim state.
+identification:
+  mode: policyholder
+  requiredBeforeData: true
+  fields:
+    - policyNumber
+verification:
+  required: true
+  fields:
+    - dateOfBirth
+    - billingZip
+  minimumMatches: 2
+verificationQuestion: Please confirm the policyholder's date of birth and billing ZIP.

@@ -1,0 +1,82 @@
+---
+import { docGroups } from "../lib/docs.js";
+import "../styles/global.css";
+
+const { activeSlug, title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="description" content="AI Assistant documentation" />
+    <title>{title} | AI Assistant Docs</title>
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="/docs/product-scope">
+        <span class="brand-mark">AI</span>
+        <span>AI Assistant Docs</span>
+      </a>
+      <button class="menu-button" type="button" aria-label="Toggle navigation" data-menu-button>
+        <span></span><span></span><span></span>
+      </button>
+    </header>
+
+    <div class="page-shell">
+      <aside class="sidebar" data-sidebar>
+        <nav aria-label="Documentation navigation">
+          {
+            docGroups.map((group) => (
+              <section class="nav-group">
+                <h2>{group.title}</h2>
+                <ul>
+                  {group.items.map((item) => (
+                    <li>
+                      <a class:list={{ active: item.slug === activeSlug }} href={`/docs/${item.slug}`}>
+                        {item.title}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </section>
+            ))
+          }
+        </nav>
+      </aside>
+
+      <main class="content">
+        <article class="doc-content">
+          <slot />
+        </article>
+      </main>
+    </div>
+
+    <script>
+      import mermaid from "mermaid";
+
+      const menuButton = document.querySelector("[data-menu-button]");
+      const sidebar = document.querySelector("[data-sidebar]");
+      menuButton?.addEventListener("click", () => sidebar?.classList.toggle("open"));
+
+      mermaid.initialize({
+        startOnLoad: false,
+        theme: "neutral",
+        securityLevel: "strict",
+      });
+
+      const sourceBlocks = document.querySelectorAll("pre code.language-mermaid");
+      const diagrams = [];
+      for (const sourceBlock of sourceBlocks) {
+        const container = document.createElement("div");
+        container.className = "mermaid";
+        container.textContent = sourceBlock.textContent;
+        sourceBlock.parentElement?.replaceWith(container);
+        diagrams.push(container);
+      }
+
+      void mermaid.run({ nodes: diagrams }).catch((error) => console.error("Unable to render Mermaid diagrams.", error));
+    </script>
+  </body>
+</html>

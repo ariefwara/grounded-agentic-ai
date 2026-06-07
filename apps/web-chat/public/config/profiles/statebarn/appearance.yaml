@@ -1,0 +1,8 @@
+primary: "#b51f2e"
+primaryHover: "#8c1723"
+accent: "#f4b942"
+avatar: "#fbe5e7"
+outgoingBubble: "#f6dfe2"
+chatBackground: "#f5f2f2"
+backgroundImage: "/assets/backgrounds/statebarn.png"
+composerBackground: "#ebe6e7"

@@ -1,0 +1,5 @@
+dataSource: internal
+action:
+  name: request prescriber refill approval
+  path: external_api
+  integration: prescriber-approval

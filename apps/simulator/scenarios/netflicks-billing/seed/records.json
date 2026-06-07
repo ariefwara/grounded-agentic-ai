@@ -1,0 +1,38 @@
+[
+  {
+    "id": "invoice-NF-8891",
+    "topic": "invoice",
+    "title": "Netflicks invoice NF-8891",
+    "summary": "Invoice NF-8891 shows a $22.99 Premium plan charge on June 2 and a second pending authorization on June 3."
+  },
+  {
+    "id": "invoice-NF-8892",
+    "topic": "invoice",
+    "title": "Netflicks invoice NF-8892",
+    "summary": "Invoice NF-8892 shows a completed $15.49 Standard plan charge on May 2."
+  },
+  {
+    "id": "invoice-NF-8893",
+    "topic": "invoice",
+    "title": "Netflicks invoice NF-8893",
+    "summary": "Invoice NF-8893 shows a $7.99 add-on charge on June 1 and no duplicate authorization."
+  },
+  {
+    "id": "invoice-NF-8894",
+    "topic": "invoice",
+    "title": "Netflicks invoice NF-8894",
+    "summary": "Invoice NF-8894 shows a $22.99 completed charge on May 2 with no pending authorization."
+  },
+  {
+    "id": "invoice-NF-8895",
+    "topic": "invoice",
+    "title": "Netflicks invoice NF-8895",
+    "summary": "Invoice NF-8895 shows a failed $22.99 payment attempt followed by a successful retry."
+  },
+  {
+    "id": "invoice-NF-8896",
+    "topic": "invoice",
+    "title": "Netflicks invoice NF-8896",
+    "summary": "Invoice NF-8896 shows a plan upgrade prorated charge of $5.50 on June 4."
+  }
+]

@@ -1,0 +1,17 @@
+order: 5
+id: parcelex-tracking
+title: ParcelEx delivery tracking
+story: A recipient learns why a package is late, compares waiting with opening a
+  trace, and chooses the appropriate remedy based on the revised delivery date.
+profileId: parcelex
+actionState:
+  prefix: TRACE
+  nextNumber: 5101
+questions:
+  - Hi.
+  - My package did not arrive. What can you do?
+  - PX-80421.
+  - What happened to it?
+  - Is it better to wait or open a trace now?
+  - It is already past the revised date. What do you recommend?
+  - Yes, open a trace.

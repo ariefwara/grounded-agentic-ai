@@ -1,0 +1,8 @@
+primary: "#9d4e70"
+primaryHover: "#7c3c58"
+accent: "#e9b4c7"
+avatar: "#fde8ef"
+outgoingBubble: "#f8e1ea"
+chatBackground: "#f8f2f4"
+backgroundImage: "/assets/backgrounds/glowphora.png"
+composerBackground: "#eee5e9"

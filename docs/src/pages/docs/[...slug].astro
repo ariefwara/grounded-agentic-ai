@@ -1,0 +1,15 @@
+---
+import DocsLayout from "../../layouts/DocsLayout.astro";
+import { getDocument } from "../../lib/docs.js";
+
+const slug = Astro.params.slug || "product-scope";
+const document = await getDocument(slug);
+
+if (!document) {
+  return new Response("Document not found", { status: 404 });
+}
+---
+
+<DocsLayout activeSlug={slug} title={document.title}>
+  <div set:html={document.html} />
+</DocsLayout>

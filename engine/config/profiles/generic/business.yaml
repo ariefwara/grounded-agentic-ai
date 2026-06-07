@@ -1,0 +1,7 @@
+id: generic
+brand: AI Assistant
+domain: customer service
+useCase: general customer support
+offers:
+  - answer supported questions
+  - clarify customer requests

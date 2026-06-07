@@ -4,5 +4,7 @@
 node_modules/
 dist/
 build/
+output/
 .angular/
+.astro/
 .DS_Store

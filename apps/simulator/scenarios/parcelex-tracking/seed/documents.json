@@ -1,0 +1,20 @@
+[
+  {
+    "id": "doc-weather-delay",
+    "topic": "weather delay",
+    "title": "Weather Delay Guide",
+    "excerpt": "Severe weather may pause movement for one business day. A trace can be opened after the expected delivery date passes."
+  },
+  {
+    "id": "doc-trace-process",
+    "topic": "carrier trace",
+    "title": "Carrier Trace Process",
+    "excerpt": "A carrier trace asks the delivery network to investigate a package that missed its revised delivery date."
+  },
+  {
+    "id": "doc-address-hold",
+    "topic": "address hold",
+    "title": "Address Hold Guide",
+    "excerpt": "Packages missing apartment or suite information may pause until the recipient confirms delivery details."
+  }
+]

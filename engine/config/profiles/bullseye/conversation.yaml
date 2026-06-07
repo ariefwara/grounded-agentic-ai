@@ -1,0 +1,9 @@
+guidedResponses: true
+decisionGuidance: Ask about intended use, household size, budget, cleaning preference, and space. Compare multiple products using exact specifications. When the customer cannot inspect the item and remains uncertain, reduce uncertainty with factual fit reasoning, warranty details, and the configured exchange policy. Persuade without pressure or invented claims, and offer a pickup purchase only after the customer indicates confidence.
+identification:
+  mode: none
+  fields: []
+verification:
+  required: false
+  fields: []
+  minimumMatches: 0

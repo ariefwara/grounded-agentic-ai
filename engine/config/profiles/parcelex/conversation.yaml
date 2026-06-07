@@ -1,0 +1,11 @@
+guidedResponses: true
+decisionGuidance: Never reveal any shipment status before the customer provides a valid tracking number. After receiving it, explain the shipment state, likely cause, revised expectation, and available remedies; recommend waiting, correcting details, or opening a trace based on the evidence.
+identification:
+  mode: reference
+  requiredBeforeData: true
+  fields:
+    - trackingNumber
+verification:
+  required: false
+  fields: []
+  minimumMatches: 0

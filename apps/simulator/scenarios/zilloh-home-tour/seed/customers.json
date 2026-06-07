@@ -1,0 +1,20 @@
+[
+  {
+    "id": "lead_zilloh_001",
+    "name": "Taylor Morgan",
+    "phone": "7375550188",
+    "customerNumber": "LEAD-310"
+  },
+  {
+    "id": "lead_zilloh_002",
+    "name": "Avery Stone",
+    "phone": "7375550190",
+    "customerNumber": "LEAD-311"
+  },
+  {
+    "id": "lead_zilloh_003",
+    "name": "Morgan Clark",
+    "phone": "7375550191",
+    "customerNumber": "LEAD-312"
+  }
+]

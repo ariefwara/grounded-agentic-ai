@@ -1,0 +1,20 @@
+[
+  {
+    "id": "default",
+    "topic": "new booking",
+    "title": "Deltaway New Booking Policy",
+    "text": "A traveler must approve the selected flight and fare before a new booking is created."
+  },
+  {
+    "id": "fare-selection",
+    "topic": "fare",
+    "title": "Fare Selection Policy",
+    "text": "Available fare prices are shown before confirmation and may differ by departure time and cabin."
+  },
+  {
+    "id": "traveler-details",
+    "topic": "traveler details",
+    "title": "Traveler Details Policy",
+    "text": "A traveler name and email are required to create a new flight booking."
+  }
+]

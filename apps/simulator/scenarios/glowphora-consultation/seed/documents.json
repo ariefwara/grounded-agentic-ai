@@ -1,0 +1,20 @@
+[
+  {
+    "id": "doc_brightening_consult",
+    "topic": "dark spots",
+    "title": "Brightening Consultation",
+    "excerpt": "A licensed aesthetician reviews skin goals and may recommend a peel, facial, or home-care routine after an in-person assessment."
+  },
+  {
+    "id": "doc-acne-consult",
+    "topic": "acne",
+    "title": "Acne Consultation",
+    "excerpt": "An acne consultation reviews breakouts, current products, and sensitivity before recommending treatment."
+  },
+  {
+    "id": "doc-sensitive-skin-consult",
+    "topic": "sensitive skin",
+    "title": "Sensitive Skin Consultation",
+    "excerpt": "A sensitive skin consultation focuses on irritation history and patch-test planning."
+  }
+]

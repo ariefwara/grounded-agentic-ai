@@ -1,0 +1,8 @@
+primary: "#173f7a"
+primaryHover: "#102e5a"
+accent: "#d62839"
+avatar: "#e2eaf7"
+outgoingBubble: "#dfe9f6"
+chatBackground: "#f0f3f7"
+backgroundImage: "/assets/backgrounds/deltaway.png"
+composerBackground: "#e5eaf0"

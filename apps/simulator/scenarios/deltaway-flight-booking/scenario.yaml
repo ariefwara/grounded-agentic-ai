@@ -1,0 +1,19 @@
+order: 6
+id: deltaway-flight-booking
+title: Deltaway Air new flight booking
+story: A first-time traveler explores a full day of flights, balances schedule
+  against price and fare constraints, then books the best-fit option.
+profileId: deltaway
+actionState:
+  prefix: TRIP
+  nextNumber: 6101
+questions:
+  - Hi.
+  - I need to fly from Austin to Seattle on June 20.
+  - I can leave any time after 8 AM. I want a good price, but I need to arrive before dinner.
+  - Show me the best options across the day.
+  - What is the best balance of price and arrival time?
+  - The 1:40 PM option sounds good. What are the trade-offs?
+  - Okay, I want that one.
+  - Morgan Reed, morgan.reed@example.com.
+  - Yes, book it.

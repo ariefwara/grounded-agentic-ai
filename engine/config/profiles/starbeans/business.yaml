@@ -1,0 +1,8 @@
+id: starbeans
+brand: Starbeans Coffee
+domain: coffee shop catering
+useCase: public menu guidance and catering pickup requests
+offers:
+  - compare catering packs
+  - check pickup slots
+  - create a pickup request

@@ -1,0 +1,4 @@
+dataSource: internal
+action:
+  name: open card dispute
+  path: internal_data

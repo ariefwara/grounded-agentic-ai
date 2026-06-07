@@ -1,0 +1,56 @@
+[
+  {
+    "id": "slot-south-congress-0930",
+    "topic": "pickup",
+    "title": "South Congress pickup availability",
+    "summary": "Saturday pickup slots are available at 9:30 AM and 10:15 AM."
+  },
+  {
+    "id": "slot-downtown-0900",
+    "topic": "pickup",
+    "title": "Downtown pickup availability",
+    "summary": "Saturday pickup slots are available at 9:00 AM and 11:00 AM."
+  },
+  {
+    "id": "slot-domain-1000",
+    "topic": "pickup",
+    "title": "The Domain pickup availability",
+    "summary": "Saturday pickup slots are available at 10:00 AM and 10:45 AM."
+  },
+  {
+    "id": "package-breakfast-18",
+    "topic": "coffee pack",
+    "title": "Breakfast Coffee Pack",
+    "summary": "The Breakfast Coffee Pack serves 18 and includes three regular coffee travelers, cups, condiments, and mini pastries for $88. It covers the group but does not include decaf."
+  },
+  {
+    "id": "package-decaf-12",
+    "topic": "coffee pack",
+    "title": "Decaf Office Pack",
+    "summary": "The Decaf Office Pack serves 12 and includes two decaf travelers with cups and condiments for $56. It covers decaf guests but has no regular coffee or pastries."
+  },
+  {
+    "id": "package-mixed-12",
+    "topic": "coffee pack pastries decaf",
+    "title": "Mixed Meeting Pack",
+    "summary": "The Mixed Meeting Pack serves 12 and includes one regular traveler, one decaf traveler, cups, condiments, and twelve mini pastries for $74. It is the best fit for a twelve-person mixed-preference meeting."
+  },
+  {
+    "id": "package-build-your-own-12",
+    "topic": "coffee pack pastries decaf",
+    "title": "Build Your Own Meeting Order",
+    "summary": "A build-your-own order with two regular travelers, one decaf traveler, and twelve pastries serves about 18 for $96. It offers extra coffee but costs $22 more than the Mixed Meeting Pack."
+  },
+  {
+    "id": "slot-south-congress-1130",
+    "topic": "pickup",
+    "title": "South Congress late morning pickup availability",
+    "summary": "Saturday pickup slots at South Congress are also available at 11:30 AM and 12:15 PM."
+  },
+  {
+    "id": "slot-lamar-0945",
+    "topic": "pickup",
+    "title": "Lamar pickup availability",
+    "summary": "Saturday pickup slots are available at 9:45 AM and 10:30 AM at Lamar."
+  }
+]

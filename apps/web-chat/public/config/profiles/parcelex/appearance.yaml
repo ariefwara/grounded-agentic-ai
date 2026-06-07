@@ -1,0 +1,8 @@
+primary: "#4d2a7a"
+primaryHover: "#39205a"
+accent: "#f26a21"
+avatar: "#fbe5d8"
+outgoingBubble: "#e9e1f2"
+chatBackground: "#f3f1f5"
+backgroundImage: "/assets/backgrounds/parcelex.png"
+composerBackground: "#e9e6ec"

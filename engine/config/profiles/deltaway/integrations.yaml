@@ -1,0 +1,5 @@
+dataSource: internal
+action:
+  name: create flight booking
+  path: external_api
+  integration: flight-booking

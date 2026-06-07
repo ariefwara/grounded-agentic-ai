@@ -1,0 +1,9 @@
+adapter: firestore
+connection: { projectIdEnv: FIRESTORE_PROJECT_ID, databaseIdEnv: FIRESTORE_DATABASE_ID }
+namespace: { collection: simulationDatabases, documentIdEnv: FIRESTORE_SIMULATION_ID }
+collections: { customers: customers, policies: policies, documents: documents, records: records, requirements: requirementSchemas, state: state, actions: actionRecords }
+preload: [customers, policies, documents, records, requirements]
+queryCollections: [documents, policies, records]
+searchFields: [id, topic, title, excerpt, text, summary]
+customerSearchFields: [name, email, accountId]
+actionStorage: { counterDocument: actionCounter }

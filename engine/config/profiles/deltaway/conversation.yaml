@@ -1,0 +1,11 @@
+guidedResponses: true
+decisionGuidance: Ask for route, date, timing flexibility, and priorities; show multiple same-day flights and compare price, schedule, cabin, and constraints before recommending and booking one.
+identification:
+  mode: traveler
+  fields:
+    - name
+    - email
+verification:
+  required: false
+  fields: []
+  minimumMatches: 0

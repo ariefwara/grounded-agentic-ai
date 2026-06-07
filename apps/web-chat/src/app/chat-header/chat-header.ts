@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, input } from '@angular/core';
+import { ChatProfile } from '../shared/chat-profile.model';
 
 @Component({
   selector: 'app-chat-header',
@@ -6,4 +7,6 @@ import { Component } from '@angular/core';
   templateUrl: './chat-header.html',
   styleUrl: './chat-header.css',
 })
-export class ChatHeader {}
+export class ChatHeader {
+  readonly profile = input.required<ChatProfile>();
+}

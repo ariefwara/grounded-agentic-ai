@@ -10,14 +10,14 @@
 
   <input
     #messageInput
-    class="input h-11 min-w-0 flex-1 rounded-full border border-[#d1d7db] bg-white px-5 text-base text-[#111b21] shadow-sm placeholder:text-[#8696a0] focus:border-primary focus:outline-none"
+    class="chat-input input h-11 min-w-0 flex-1 rounded-full border border-[#d1d7db] bg-white px-5 text-base text-[#111b21] shadow-sm placeholder:text-[#8696a0] focus:outline-none"
     type="text"
     autocomplete="off"
-    placeholder="Type a message"
+    [placeholder]="placeholder()"
     (input)="typing.emit()"
   />
 
-  <button class="btn btn-circle shrink-0 border-0 bg-primary text-white hover:bg-secondary" type="submit" aria-label="Send message">
+  <button class="send-button btn btn-circle shrink-0 border-0 text-white" type="submit" aria-label="Send message">
     <svg class="h-5 w-5" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor">
       <path d="M3 20.5 21 12 3 3.5v6.6l10.6 1.9L3 13.9v6.6Z" />
     </svg>

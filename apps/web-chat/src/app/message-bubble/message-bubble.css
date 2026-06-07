@@ -104,6 +104,6 @@
 }
 
 .outgoing-bubble {
-  background: #d9fdd3;
+  background: var(--chat-outgoing);
   border-top-right-radius: 2px;
 }

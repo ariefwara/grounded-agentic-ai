@@ -1,0 +1,19 @@
+order: 2
+id: starbeans-catering
+title: Starbeans Coffee catering pickup
+story: An office coordinator describes a meeting, compares catering combinations
+  by guest coverage, dietary fit, price, and pickup convenience, then creates a request.
+profileId: starbeans
+actionState:
+  prefix: CAT
+  nextNumber: 2101
+questions:
+  - Hi.
+  - I need coffee for an office meeting, but I do not know how much to order.
+  - Twelve people on Saturday morning. Two only drink decaf, and a few want pastries.
+  - What are the best package options and the price difference?
+  - The mixed option sounds best. Which stores can have it ready before 10?
+  - South Congress works. What pickup times are open?
+  - 9:30 works.
+  - Jordan Lee is the contact.
+  - Yes, place it.

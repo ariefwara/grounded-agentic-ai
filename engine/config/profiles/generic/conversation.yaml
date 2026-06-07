@@ -1,0 +1,8 @@
+guidedResponses: true
+identification:
+  mode: none
+  fields: []
+verification:
+  required: false
+  fields: []
+  minimumMatches: 0

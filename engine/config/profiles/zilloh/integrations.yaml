@@ -1,0 +1,4 @@
+dataSource: internal
+action:
+  name: reserve home tour
+  path: internal_data

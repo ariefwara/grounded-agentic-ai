@@ -1,0 +1,8 @@
+primary: "#176b4d"
+primaryHover: "#10523a"
+accent: "#c69c6d"
+avatar: "#f4eadf"
+outgoingBubble: "#e1f1e9"
+chatBackground: "#f3f1ed"
+backgroundImage: "/assets/backgrounds/starbeans.png"
+composerBackground: "#e9e5df"

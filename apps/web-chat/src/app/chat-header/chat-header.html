@@ -1,13 +1,17 @@
-<header class="flex h-16 shrink-0 items-center gap-3 bg-primary px-4 text-white">
+<header class="chat-header flex h-16 shrink-0 items-center gap-3 px-4 text-white">
   <div class="avatar placeholder">
-    <div class="h-10 w-10 rounded-full bg-[#d9fdd3] text-primary">
-      <span class="text-sm font-semibold">AI</span>
+    <div class="profile-avatar h-10 w-10 rounded-full">
+      @if (profile().avatarImage) {
+        <img [src]="profile().avatarImage" [alt]="profile().assistantName" />
+      } @else {
+        <span class="text-sm font-semibold">{{ profile().initials }}</span>
+      }
     </div>
   </div>
 
   <div class="min-w-0 flex-1">
-    <h1 class="truncate text-base font-semibold leading-5">AI Assistant</h1>
-    <p class="text-xs text-white/75">online</p>
+    <h1 class="truncate text-base font-semibold leading-5">{{ profile().assistantName }}</h1>
+    <p class="truncate text-xs text-white/75">{{ profile().status }}</p>
   </div>
 
   <button class="btn btn-ghost btn-circle btn-sm text-white" type="button" aria-label="Search">

@@ -1,0 +1,29 @@
+[
+  {
+    "id": "customer_chasewood_001",
+    "name": "Dana Price",
+    "phone": "6465550114",
+    "accountId": "CW-9014",
+    "billingZip": "10019",
+    "lastTransaction": "$84.26 at Harbor Market on June 4",
+    "address": "New York"
+  },
+  {
+    "id": "customer_chasewood_002",
+    "name": "Nora Bell",
+    "phone": "6465550122",
+    "accountId": "CW-9015",
+    "billingZip": "11201",
+    "lastTransaction": "$42.10 at City Grocer on June 3",
+    "address": "Brooklyn"
+  },
+  {
+    "id": "customer_chasewood_003",
+    "name": "Owen Scott",
+    "phone": "6465550133",
+    "accountId": "CW-9016",
+    "billingZip": "10003",
+    "lastTransaction": "$19.80 at Metro Cafe on June 5",
+    "address": "New York"
+  }
+]

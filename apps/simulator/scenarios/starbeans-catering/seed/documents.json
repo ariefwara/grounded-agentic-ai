@@ -1,0 +1,20 @@
+[
+  {
+    "id": "doc_coffee_pack",
+    "topic": "coffee pack",
+    "title": "Office Coffee Pack",
+    "excerpt": "The Office Coffee Pack serves 12 and includes two coffee travelers, cups, cream, sugar, and stirrers for $54."
+  },
+  {
+    "id": "doc-catering-timing",
+    "topic": "catering pickup",
+    "title": "Catering Pickup Timing",
+    "excerpt": "Pickup orders should be scheduled with enough time for traveler preparation and handoff at the selected store."
+  },
+  {
+    "id": "doc-catering-contact",
+    "topic": "catering contact",
+    "title": "Catering Contact Guide",
+    "excerpt": "A catering request needs one contact name so the store can label and confirm the pickup."
+  }
+]

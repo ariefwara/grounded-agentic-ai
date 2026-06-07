@@ -1,0 +1,17 @@
+{
+  "name": "mock-api",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Mock external API and tool service for simulation.",
+  "scripts": {
+    "start": "node src/index.js",
+    "test": "node --test tests/*.test.js"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "express": "^5.2.1"
+  }
+}

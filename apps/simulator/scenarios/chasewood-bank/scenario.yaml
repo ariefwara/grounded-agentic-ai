@@ -1,0 +1,20 @@
+order: 10
+id: chasewood-bank
+title: Chasewood Bank card dispute
+story: A cardholder reviews several unfamiliar-looking transaction states,
+  understands protection options and consequences, then chooses the safest response.
+profileId: chasewood
+actionState:
+  prefix: DSP
+  nextNumber: 10101
+questions:
+  - Hi.
+  - There is a card charge I do not recognize. What should I do?
+  - CW-9014, 6465550114.
+  - Can you show me the transaction?
+  - 10019, $84.26 at Harbor Market on June 4.
+  - Can you compare the suspicious charges and explain which one actually posted?
+  - The card is with me. Does that change what I should do?
+  - Should I lock the card, wait for pending charges, or dispute the completed one?
+  - I do not recognize the completed Harbor Market charge. What do you recommend?
+  - Yes, dispute it.

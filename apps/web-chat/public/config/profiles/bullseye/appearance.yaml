@@ -1,0 +1,8 @@
+primary: "#a71930"
+primaryHover: "#861326"
+accent: "#ef233c"
+avatar: "#ffe3e7"
+outgoingBubble: "#ffe4e8"
+chatBackground: "#f5f2f2"
+backgroundImage: "/assets/backgrounds/bullseye.png"
+composerBackground: "#ebe7e8"

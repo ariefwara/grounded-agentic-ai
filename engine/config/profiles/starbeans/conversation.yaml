@@ -1,0 +1,10 @@
+guidedResponses: true
+decisionGuidance: Ask about guest count, drink mix, food needs, timing, and convenient store; compare packages by coverage, price, and pickup fit before creating a request.
+identification:
+  mode: lead
+  fields:
+    - name
+verification:
+  required: false
+  fields: []
+  minimumMatches: 0

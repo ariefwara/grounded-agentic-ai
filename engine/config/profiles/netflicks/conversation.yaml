@@ -1,0 +1,15 @@
+guidedResponses: true
+decisionGuidance: Compare recent charges and their likely causes, explain which may resolve without action, and recommend the least disruptive resolution before opening a case.
+identification:
+  mode: customer
+  requiredBeforeData: true
+  fields:
+    - email
+verification:
+  required: true
+  fields:
+    - billingZip
+    - lastTransaction
+  minimumMatches: 1
+verificationQuestion: Please confirm your billing ZIP and the amount and date of
+  your latest completed charge.

@@ -8,19 +8,43 @@ services:
     environment:
       NODE_ENV: production
       PORT: 3000
+      ENGINE_PROFILE_ID: ${ENGINE_PROFILE_ID:-generic}
       LLM_PROVIDER: ${LLM_PROVIDER:-vertex}
       LLM_API_KEY: ${LLM_API_KEY:-}
       LLM_MODEL: ${LLM_MODEL:-}
       LLM_BASE_URL: ${LLM_BASE_URL:-}
       LLM_TEMPERATURE: ${LLM_TEMPERATURE:-0.2}
-      LLM_MAX_TOKENS: ${LLM_MAX_TOKENS:-300}
       GEMINI_API_KEY: ${GEMINI_API_KEY:-}
       GEMINI_MODEL: ${GEMINI_MODEL:-}
       GCP_PROJECT: ${GCP_PROJECT:-ariefwrz}
+      FIRESTORE_PROJECT_ID: ${FIRESTORE_PROJECT_ID:-ariefwrz}
+      FIRESTORE_DATABASE_ID: ${FIRESTORE_DATABASE_ID:-(default)}
+      FIRESTORE_SIMULATION_ID: ${FIRESTORE_SIMULATION_ID:-retail-refund}
       VERTEX_LOCATION: ${VERTEX_LOCATION:-global}
       VERTEX_TEXT_MODEL: ${VERTEX_TEXT_MODEL:-gemini-2.5-flash}
+      EXTERNAL_API_URL: ${EXTERNAL_API_URL:-http://mock-api:3002}
+      DELTAWAY_API_URL: ${DELTAWAY_API_URL:-http://mock-api:3002}
+      MEDIGREEN_PRESCRIBER_API_URL: ${MEDIGREEN_PRESCRIBER_API_URL:-http://mock-api:3002}
+      ENGINE_RESPONSE_CACHE: ${ENGINE_RESPONSE_CACHE:-on}
+      ENGINE_RESPONSE_CACHE_TTL_MS: ${ENGINE_RESPONSE_CACHE_TTL_MS:-300000}
+      ENGINE_RESPONSE_CACHE_MAX_ENTRIES: ${ENGINE_RESPONSE_CACHE_MAX_ENTRIES:-200}
+      INTERNAL_DB_CACHE: ${INTERNAL_DB_CACHE:-on}
+      INTERNAL_DB_PRELOAD: ${INTERNAL_DB_PRELOAD:-on}
+      INTERNAL_DB_CACHE_TTL_MS: ${INTERNAL_DB_CACHE_TTL_MS:-300000}
+      ARIZE_ENABLED: ${ARIZE_ENABLED:-off}
+      ARIZE_PROJECT_NAME: ${ARIZE_PROJECT_NAME:-ai-assistant-engine}
+      ARIZE_API_KEY: ${ARIZE_API_KEY:-}
+      ARIZE_ENDPOINT: ${ARIZE_ENDPOINT:-}
+      PHOENIX_ENABLED: ${PHOENIX_ENABLED:-off}
+      PHOENIX_PROJECT_NAME: ${PHOENIX_PROJECT_NAME:-ai-assistant-engine}
+      PHOENIX_API_KEY: ${PHOENIX_API_KEY:-}
+      PHOENIX_COLLECTOR_ENDPOINT: ${PHOENIX_COLLECTOR_ENDPOINT:-}
+      PHOENIX_URL: ${PHOENIX_URL:-}
+      PHOENIX_BATCH: ${PHOENIX_BATCH:-true}
     ports:
       - "3000:3000"
+    depends_on:
+      - mock-api
 
   web-chat:
     build:
@@ -44,12 +68,23 @@ services:
     depends_on:
       - engine
 
-  document-management:
+  mock-api:
     build:
-      context: ./apps/document-management
-    container_name: document-management
+      context: ./apps/mock-api
+    container_name: mock-api
     environment:
       NODE_ENV: production
-      PORT: 3001
+      PORT: 3002
     ports:
-      - "3001:3001"
+      - "3002:3002"
+
+  docs:
+    build:
+      context: ./docs
+    container_name: docs
+    environment:
+      NODE_ENV: production
+      HOST: 0.0.0.0
+      PORT: 4321
+    ports:
+      - "4321:4321"

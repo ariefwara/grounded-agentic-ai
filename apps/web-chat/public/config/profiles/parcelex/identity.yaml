@@ -1,0 +1,7 @@
+id: parcelex
+brand: ParcelEx
+assistantName: ParcelEx Tracking
+initials: PX
+avatarImage: "/assets/avatars/parcelex.png"
+status: Shipment updates
+inputPlaceholder: Enter a tracking question

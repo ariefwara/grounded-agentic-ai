@@ -1,0 +1,4 @@
+dataSource: internal
+action:
+  name: place air fryer pickup purchase
+  path: internal_data

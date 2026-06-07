@@ -1,0 +1,19 @@
+order: 8
+id: medigreen-refill
+title: MediGreen Pharmacy prescription refill
+story: A patient identifies which medication needs attention, compares the status
+  of several prescriptions, understands the available refill paths, and requests approval.
+profileId: medigreen
+actionState:
+  prefix: RX
+  nextNumber: 8101
+questions:
+  - Hi.
+  - I need help with my medicine.
+  - "3125550176."
+  - I think I need a refill.
+  - April 19, 1988.
+  - I am not sure which prescription needs the doctor. Can you compare their statuses?
+  - RX-4412 is the one I need soon. What are my options?
+  - Which option is fastest?
+  - Yes, request approval.

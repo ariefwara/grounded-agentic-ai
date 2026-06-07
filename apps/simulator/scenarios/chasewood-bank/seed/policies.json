@@ -1,0 +1,8 @@
+[
+  {
+    "id": "default",
+    "topic": "card dispute",
+    "title": "Chasewood Card Dispute Policy",
+    "text": "Transaction details and dispute creation require account identification plus two matching knowledge-based verification details. Card locking prevents new card authorizations but does not guarantee that an existing pending transaction will not post. Completed unauthorized charges may be disputed; pending charges should be monitored and reviewed if they post."
+  }
+]

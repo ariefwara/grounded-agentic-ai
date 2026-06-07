@@ -1,0 +1,8 @@
+id: chasewood
+brand: Chasewood Bank
+domain: consumer banking
+useCase: protected transaction review and card disputes
+offers:
+  - review a transaction
+  - secure a card
+  - open a card dispute

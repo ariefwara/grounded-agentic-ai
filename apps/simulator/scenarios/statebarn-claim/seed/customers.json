@@ -1,0 +1,29 @@
+[
+  {
+    "id": "policyholder_statebarn_001",
+    "name": "Robin Hayes",
+    "policyNumber": "SB-442901",
+    "email": "robin.hayes@example.com",
+    "dateOfBirth": "November 8, 1979",
+    "billingZip": "75204",
+    "address": "Dallas"
+  },
+  {
+    "id": "policyholder_statebarn_002",
+    "name": "Martha Jones",
+    "policyNumber": "SB-442902",
+    "email": "martha.jones@example.com",
+    "dateOfBirth": "May 14, 1982",
+    "billingZip": "75001",
+    "address": "Plano"
+  },
+  {
+    "id": "policyholder_statebarn_003",
+    "name": "Elliot Moore",
+    "policyNumber": "SB-442903",
+    "email": "elliot.moore@example.com",
+    "dateOfBirth": "January 2, 1968",
+    "billingZip": "78704",
+    "address": "Austin"
+  }
+]

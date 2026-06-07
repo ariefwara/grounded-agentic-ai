@@ -1,0 +1,11 @@
+guidedResponses: true
+decisionGuidance: Begin with a chat consultation about concerns, duration, sensitivity, current routine, and goals; explain plausible treatment paths and trade-offs, then book an in-person consultation to confirm suitability and perform treatment later.
+identification:
+  mode: lead
+  fields:
+    - name
+    - phone
+verification:
+  required: false
+  fields: []
+  minimumMatches: 0

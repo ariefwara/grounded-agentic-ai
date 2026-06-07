@@ -1,0 +1,11 @@
+guidedResponses: true
+decisionGuidance: Ask about budget, bedrooms, location priorities, and must-haves; compare several listings and trade-offs before arranging a tour.
+identification:
+  mode: lead
+  fields:
+    - name
+    - phone
+verification:
+  required: false
+  fields: []
+  minimumMatches: 0

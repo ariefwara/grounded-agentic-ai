@@ -1,0 +1,38 @@
+[
+  {
+    "id": "doc-hail-claim",
+    "topic": "hail damage",
+    "title": "Hail Damage Claim Guide",
+    "excerpt": "After hail damage, first confirm everyone is safe and stay off the roof. Photograph visible damage from safe ground-level locations, including the roofline, gutters, siding, windows, vehicles, and fallen hail when available. Save the original photos and note the storm date. Schedule the adjuster inspection after documenting the visible condition."
+  },
+  {
+    "id": "doc-roof-inspection",
+    "topic": "inspection",
+    "title": "Roof Inspection Guide",
+    "excerpt": "When the roof is not leaking and there is no immediate hazard, document visible damage safely and schedule the adjuster inspection before permanent repairs. A policyholder may request a written roofer estimate, but should avoid signing a repair contract or authorizing permanent work before the inspection. Never climb onto a damaged roof."
+  },
+  {
+    "id": "doc-temporary-repair",
+    "topic": "temporary repair",
+    "title": "Temporary Repair Guide",
+    "excerpt": "If an active leak or immediate hazard develops, protect people and belongings first. Use only reasonable temporary measures needed to prevent further damage, preferably through a qualified professional. Photograph conditions before and after temporary work, keep damaged materials when practical, and retain itemized receipts. Do not begin permanent repairs unless emergency conditions require them."
+  },
+  {
+    "id": "doc-claim-photos",
+    "topic": "claim photos documentation",
+    "title": "Property Damage Photo Guide",
+    "excerpt": "Useful claim photos include wide views showing the affected area, closer views of visible damage, interior signs of water entry, and photos of temporary mitigation. Take photos only from safe locations. Do not climb onto the roof or enter an unsafe area to obtain evidence."
+  },
+  {
+    "id": "doc-roofer-estimate",
+    "topic": "roofer contractor estimate",
+    "title": "Contractor Estimate Guide",
+    "excerpt": "A written contractor estimate can help describe the scope of damage, but it does not replace the adjuster inspection. Before inspection, avoid signing repair contracts, paying large deposits, or authorizing permanent roof replacement. Emergency temporary work should be limited to preventing further damage, with photos and receipts retained."
+  },
+  {
+    "id": "doc-claim-next-steps",
+    "topic": "claim next steps",
+    "title": "Claim Next-Step Decision Guide",
+    "excerpt": "For hail damage without a leak: safely photograph visible damage, schedule the adjuster inspection, and monitor for changes; a roofer is optional before inspection. For an active leak or unsafe condition: protect people, arrange reasonable temporary mitigation, document the work, retain receipts, and notify the claim team. Permanent repairs normally wait until after inspection."
+  }
+]

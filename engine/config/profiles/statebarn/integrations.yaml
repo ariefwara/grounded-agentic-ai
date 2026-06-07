@@ -1,0 +1,4 @@
+dataSource: internal
+action:
+  name: schedule adjuster inspection
+  path: internal_data

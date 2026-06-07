@@ -1,4 +1,5 @@
 import { spawnSync } from "node:child_process";
+import { renderPrompt } from "../prompts/prompt-loader.js";
 
 export function createLlmClient(env = process.env) {
   const provider = normalizeProvider(env.LLM_PROVIDER);
@@ -61,6 +62,9 @@ function resolveOpenAiBaseUrl(provider, configuredBaseUrl) {
 function createFallbackClient() {
   return {
     enabled: false,
+    async generateStructured({ fallback }) {
+      return fallback || {};
+    },
     async generateAnswer({ approvedAnswer, userMessage }) {
       return approvedAnswer || `LLM is not configured. User asked: ${userMessage}`;
     },
@@ -70,6 +74,9 @@ function createFallbackClient() {
 function createMockClient() {
   return {
     enabled: true,
+    async generateStructured({ fallback }) {
+      return fallback || {};
+    },
     async generateAnswer({ approvedAnswer, userMessage }) {
       return approvedAnswer || `Mock answer for: ${userMessage}`;
     },
@@ -79,6 +86,13 @@ function createMockClient() {
 function createOpenAiCompatibleClient({ apiKey, model, baseUrl, temperature }) {
   return {
     enabled: true,
+    async generateStructured(input) {
+      const text = await this.generateAnswer({
+        userMessage: buildStructuredPrompt(input),
+        structured: true,
+      });
+      return parseStructuredText(text, input.fallback);
+    },
     async generateAnswer(input) {
       const response = await fetch(`${baseUrl}/chat/completions`, {
         method: "POST",
@@ -102,6 +116,13 @@ function createOpenAiCompatibleClient({ apiKey, model, baseUrl, temperature }) {
 function createGeminiClient({ apiKey, model, baseUrl, temperature }) {
   return {
     enabled: true,
+    async generateStructured(input) {
+      const text = await this.generateAnswer({
+        userMessage: buildStructuredPrompt(input),
+        structured: true,
+      });
+      return parseStructuredText(text, input.fallback);
+    },
     async generateAnswer(input) {
       const response = await fetch(
         `${baseUrl}/models/${encodeURIComponent(model)}:generateContent?key=${apiKey}`,
@@ -133,6 +154,13 @@ function createGeminiClient({ apiKey, model, baseUrl, temperature }) {
 function createVertexClient({ projectId, location, model, temperature }) {
   return {
     enabled: true,
+    async generateStructured(input) {
+      const text = await this.generateAnswer({
+        userMessage: buildStructuredPrompt(input),
+        structured: true,
+      });
+      return parseStructuredText(text, input.fallback);
+    },
     async generateAnswer(input) {
       const token = getGcloudAccessToken();
       const host = location === "global" ? "aiplatform.googleapis.com" : `${location}-aiplatform.googleapis.com`;
@@ -182,7 +210,7 @@ function buildMessages(input) {
     return [
       {
         role: "system",
-        content: "You are a helpful assistant. Answer the user's general question clearly and briefly.",
+        content: renderPrompt("llm-wrapper/general-system"),
       },
       {
         role: "user",
@@ -194,8 +222,7 @@ function buildMessages(input) {
   return [
     {
       role: "system",
-      content:
-        "You are an assistant for business communication. Answer only within the approved answer boundary. Do not add commitments, policy changes, or private information.",
+      content: renderPrompt("llm-wrapper/approved-answer-system"),
     },
     {
       role: "user",
@@ -204,25 +231,20 @@ function buildMessages(input) {
   ];
 }
 
-function buildPrompt({ userMessage, approvedAnswer, questionTitle }) {
-  if (!approvedAnswer) {
-    return [
-      "Jawab pertanyaan pengguna secara singkat, jelas, dan lengkap.",
-      "Gunakan bahasa Indonesia.",
-      "Utamakan satu kalimat pendek.",
-      "Jika satu kalimat tidak cukup untuk menjawab dengan benar, boleh gunakan beberapa kalimat pendek.",
-      "Jangan berhenti di tengah kalimat.",
-      "",
-      `Pertanyaan pengguna: ${userMessage}`,
-    ].join("\n");
+function buildPrompt({ userMessage, approvedAnswer, questionTitle, structured }) {
+  if (structured) {
+    return userMessage;
   }
 
-  return [
-    `User message: ${userMessage}`,
-    `Matched question: ${questionTitle || "unknown"}`,
-    `Approved answer boundary: ${approvedAnswer}`,
-    "Return only the final assistant message.",
-  ].join("\n");
+  if (!approvedAnswer) {
+    return renderPrompt("llm-wrapper/general-answer-request", { userMessage });
+  }
+
+  return renderPrompt("llm-wrapper/approved-answer-request", {
+    userMessage,
+    questionTitle: questionTitle || "unknown",
+    approvedAnswer,
+  });
 }
 
 async function parseJsonResponse(response) {
@@ -240,6 +262,38 @@ async function parseJsonResponse(response) {
   }
 
   return json;
+}
+
+function buildStructuredPrompt({ task, context, fallback }) {
+  return renderPrompt("llm-wrapper/structured-json", {
+    task,
+    context,
+    fallback: fallback || {},
+  });
+}
+
+function parseStructuredText(text, fallback = {}) {
+  const trimmed = String(text || "").trim();
+  const jsonText = trimmed
+    .replace(/^```json\s*/i, "")
+    .replace(/^```\s*/i, "")
+    .replace(/```$/i, "")
+    .trim();
+
+  try {
+    return JSON.parse(jsonText);
+  } catch {
+    const start = jsonText.indexOf("{");
+    const end = jsonText.lastIndexOf("}");
+    if (start >= 0 && end > start) {
+      try {
+        return JSON.parse(jsonText.slice(start, end + 1));
+      } catch {
+        return fallback;
+      }
+    }
+    return fallback;
+  }
 }
 
 function extractGeminiText(json) {
