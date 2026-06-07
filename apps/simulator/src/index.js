@@ -1,4 +1,5 @@
-import { spawn } from "node:child_process";
+import { execFile, spawn } from "node:child_process";
+import { promisify } from "node:util";
 import process from "node:process";
 import { Firestore } from "@google-cloud/firestore";
 import { chromium } from "playwright-core";
@@ -7,6 +8,7 @@ import { simulationScenarios } from "./scenario-catalog.js";
 const ROOT = new URL("../../..", import.meta.url).pathname;
 const WEB_URL = process.env.WEB_CHAT_URL || "http://localhost:4200";
 const CHROME_PATH = process.env.CHROME_PATH || "/usr/bin/google-chrome";
+const execFileAsync = promisify(execFile);
 const children = [];
 
 async function main() {
@@ -52,10 +54,11 @@ async function main() {
 }
 
 async function runBrowserScenario(scenario) {
+  await minimizeAllWindows();
   const browser = await chromium.launch({
     executablePath: CHROME_PATH,
     headless: false,
-    args: ["--new-window", "--start-maximized"],
+    args: ["--new-window"],
   });
 
   try {
@@ -73,6 +76,7 @@ async function runBrowserScenario(scenario) {
 
     const page = await context.newPage();
     await page.goto(`${WEB_URL}?profile=${encodeURIComponent(scenario.profileId)}`, { waitUntil: "networkidle" });
+    await placeBrowserWindow(browser, page);
     await installReplyListener(page);
 
     for (const [index, question] of scenario.questions.entries()) {
@@ -89,6 +93,49 @@ async function runBrowserScenario(scenario) {
     await sleep(10_000);
   } finally {
     await browser.close();
+  }
+}
+
+async function minimizeAllWindows() {
+  if (process.platform !== "linux") return;
+  await execFileAsync("wmctrl", ["-k", "on"]);
+  await sleep(500);
+}
+
+async function placeBrowserWindow(browser, page) {
+  const display = await page.evaluate(() => ({
+    left: window.screen.availLeft,
+    top: window.screen.availTop,
+    width: window.screen.availWidth,
+    height: window.screen.availHeight,
+  }));
+  const margin = 20;
+  const expectedBounds = {
+    left: display.left + margin,
+    top: display.top + margin,
+    width: display.width - margin * 2,
+    height: display.height - margin * 2,
+  };
+
+  const cdp = await page.context().newCDPSession(page);
+  const { windowId } = await cdp.send("Browser.getWindowForTarget");
+  await cdp.send("Browser.setWindowBounds", {
+    windowId,
+    bounds: { windowState: "normal" },
+  });
+  await cdp.send("Browser.setWindowBounds", {
+    windowId,
+    bounds: expectedBounds,
+  });
+  await sleep(500);
+
+  const { bounds } = await cdp.send("Browser.getWindowBounds", { windowId });
+  for (const key of ["left", "top", "width", "height"]) {
+    if (Math.abs(bounds[key] - expectedBounds[key]) > 2) {
+      throw new Error(
+        `Browser placement mismatch for ${key}: expected ${expectedBounds[key]}, received ${bounds[key]}.`,
+      );
+    }
   }
 }
 
