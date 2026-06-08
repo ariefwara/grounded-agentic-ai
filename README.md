@@ -8,6 +8,8 @@ This project is an agentic AI customer-service system that helps businesses turn
 
 Repository: https://github.com/ariefwara/ai-customer-service-engine
 
+Demo Video: https://youtu.be/rd0eaPKkD-k
+
 ## What It Does
 
 The same reusable engine adapts across ten business scenarios:
