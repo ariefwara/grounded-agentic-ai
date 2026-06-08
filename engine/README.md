@@ -14,7 +14,7 @@ npm start
 The engine loads one business profile when the process starts:
 
 ```bash
-export ENGINE_PROFILE_ID=chasewood
+export ENGINE_PROFILE_ID=banking
 npm start
 ```
 

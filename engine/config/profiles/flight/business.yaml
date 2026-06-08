@@ -1,0 +1,9 @@
+id: flight
+brand: Airline
+domain: commercial airline
+useCase: flight discovery, new bookings, fare guidance, and trip management
+offers:
+  - search available flights
+  - create a new booking
+  - review fare rules
+  - manage an existing trip

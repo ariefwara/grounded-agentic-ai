@@ -1,0 +1,7 @@
+id: pharmacy
+brand: Pharmacy
+assistantName: Pharmacy
+initials: MG
+avatarImage: "/assets/avatars/pharmacy.png"
+status: Prescription support
+inputPlaceholder: Ask about a prescription

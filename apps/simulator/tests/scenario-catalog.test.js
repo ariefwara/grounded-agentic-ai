@@ -4,8 +4,8 @@ import { simulationScenarios } from "../src/scenario-catalog.js";
 
 test("defines ten ordered business scenarios", () => {
   assert.equal(simulationScenarios.length, 10);
-  assert.equal(simulationScenarios[0].id, "bullseye-market");
-  assert.equal(simulationScenarios.at(-1).id, "chasewood-bank");
+  assert.equal(simulationScenarios[0].id, "retail-shopping");
+  assert.equal(simulationScenarios.at(-1).id, "banking-dispute");
   assert.equal(new Set(simulationScenarios.map((scenario) => scenario.id)).size, 10);
 });
 
@@ -27,17 +27,17 @@ test("gives every scenario a profile id, seed, and action counter", () => {
 });
 
 test("keeps profile identity separate from scenario use case", () => {
-  const deltaway = simulationScenarios.find((scenario) => scenario.id === "deltaway-flight-booking");
+  const flight = simulationScenarios.find((scenario) => scenario.id === "flight-booking");
 
-  assert.equal(deltaway.profileId, "deltaway");
-  assert.match(deltaway.story, /first-time traveler/i);
-  assert.match(deltaway.questions.at(-1), /book it/i);
+  assert.equal(flight.profileId, "flight");
+  assert.match(flight.story, /first-time traveler/i);
+  assert.match(flight.questions.at(-1), /book it/i);
 });
 
 test("orders public support before protected financial support", () => {
-  assert.equal(simulationScenarios[0].profileId, "bullseye");
-  assert.equal(simulationScenarios.at(-2).profileId, "statebarn");
-  assert.equal(simulationScenarios.at(-1).profileId, "chasewood");
+  assert.equal(simulationScenarios[0].profileId, "retail");
+  assert.equal(simulationScenarios.at(-2).profileId, "insurance");
+  assert.equal(simulationScenarios.at(-1).profileId, "banking");
 });
 
 test("models option discovery before customer action", () => {
@@ -50,13 +50,13 @@ test("models option discovery before customer action", () => {
   }
 });
 
-test("keeps Bullseye assisted purchase factual and option-rich", () => {
-  const bullseye = simulationScenarios.find((scenario) => scenario.id === "bullseye-market");
-  const airFryers = bullseye.seed.records.filter((record) => /air fryer/i.test(record.topic));
+test("keeps Retail assisted purchase factual and option-rich", () => {
+  const retail = simulationScenarios.find((scenario) => scenario.id === "retail-shopping");
+  const airFryers = retail.seed.records.filter((record) => /air fryer/i.test(record.topic));
   const easyCleaningOptions = airFryers.filter(
     (record) => /\$(?:[0-9]{2}|100)\./.test(record.summary) && /dishwasher-safe/i.test(record.summary),
   );
-  const returnEvidence = [...bullseye.seed.policies, ...bullseye.seed.documents]
+  const returnEvidence = [...retail.seed.policies, ...retail.seed.documents]
     .map((record) => record.text || record.excerpt || "")
     .join(" ");
 
@@ -68,7 +68,7 @@ test("keeps Bullseye assisted purchase factual and option-rich", () => {
   assert.match(returnEvidence, /exchanged(?: for another model)? within 30 days/i);
   assert.match(returnEvidence, /clean, undamaged/i);
   assert.deepEqual(
-    bullseye.seed.policies.map((policy) => policy.id).sort(),
+    retail.seed.policies.map((policy) => policy.id).sort(),
     [
       "exchange-price-difference",
       "inventory-reservation",
@@ -78,15 +78,15 @@ test("keeps Bullseye assisted purchase factual and option-rich", () => {
       "warranty-guidance",
     ],
   );
-  assert.ok(bullseye.seed.policies.every((policy) => policy.topic && policy.title && policy.text));
-  assert.equal(bullseye.actionState.prefix, "ORD");
-  assert.match(bullseye.questions.at(-1), /place the pickup purchase/i);
+  assert.ok(retail.seed.policies.every((policy) => policy.topic && policy.title && policy.text));
+  assert.equal(retail.actionState.prefix, "ORD");
+  assert.match(retail.questions.at(-1), /place the pickup purchase/i);
 });
 
-test("keeps StateBarn hail guidance complete and safety-first", () => {
-  const statebarn = simulationScenarios.find((scenario) => scenario.id === "statebarn-claim");
-  const claim = statebarn.seed.records.find((record) => record.id === "claim-SB-CLM-221");
-  const guidance = [claim, ...statebarn.seed.documents, ...statebarn.seed.policies]
+test("keeps Insurance hail guidance complete and safety-first", () => {
+  const insurance = simulationScenarios.find((scenario) => scenario.id === "insurance-claim");
+  const claim = insurance.seed.records.find((record) => record.id === "claim-SB-CLM-221");
+  const guidance = [claim, ...insurance.seed.documents, ...insurance.seed.policies]
     .map((record) => record.summary || record.excerpt || record.text || "")
     .join(" ");
 
@@ -99,9 +99,9 @@ test("keeps StateBarn hail guidance complete and safety-first", () => {
   assert.match(guidance, /active leak|if a leak/i);
 });
 
-test("keeps Chasewood card-lock and transaction-state guidance accurate", () => {
-  const chasewood = simulationScenarios.find((scenario) => scenario.id === "chasewood-bank");
-  const guidance = [...chasewood.seed.documents, ...chasewood.seed.policies]
+test("keeps Bank card-lock and transaction-state guidance accurate", () => {
+  const banking = simulationScenarios.find((scenario) => scenario.id === "banking-dispute");
+  const guidance = [...banking.seed.documents, ...banking.seed.policies]
     .map((record) => record.excerpt || record.text || "")
     .join(" ");
 

@@ -1,0 +1,7 @@
+id: flight
+brand: Airline
+assistantName: Airline Assistant
+initials: DA
+avatarImage: "/assets/avatars/flight.png"
+status: Flights, bookings, and trips
+inputPlaceholder: Plan a Airline trip

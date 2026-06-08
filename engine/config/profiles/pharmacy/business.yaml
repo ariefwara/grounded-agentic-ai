@@ -1,0 +1,8 @@
+id: pharmacy
+brand: Pharmacy
+domain: retail pharmacy
+useCase: prescription status and refill requests
+offers:
+  - check a prescription
+  - explain refill status
+  - request prescriber approval

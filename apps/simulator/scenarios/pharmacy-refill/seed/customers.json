@@ -1,0 +1,26 @@
+[
+  {
+    "id": "patient_pharmacy_001",
+    "name": "Jamie Wilson",
+    "phone": "3125550176",
+    "memberId": "MG-810",
+    "dateOfBirth": "April 19, 1988",
+    "address": "Chicago"
+  },
+  {
+    "id": "patient_pharmacy_002",
+    "name": "Taylor Gray",
+    "phone": "3125550188",
+    "memberId": "MG-811",
+    "dateOfBirth": "March 3, 1976",
+    "address": "Chicago"
+  },
+  {
+    "id": "patient_pharmacy_003",
+    "name": "Alex Rivera",
+    "phone": "3125550199",
+    "memberId": "MG-812",
+    "dateOfBirth": "July 22, 1991",
+    "address": "Evanston"
+  }
+]

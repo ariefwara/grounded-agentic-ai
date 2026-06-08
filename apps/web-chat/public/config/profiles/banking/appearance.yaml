@@ -1,0 +1,8 @@
+primary: "#174c78"
+primaryHover: "#103957"
+accent: "#4ea5d9"
+avatar: "#dceefa"
+outgoingBubble: "#dceaf4"
+chatBackground: "#eef3f6"
+backgroundImage: "/assets/backgrounds/banking.png"
+composerBackground: "#e3eaf0"

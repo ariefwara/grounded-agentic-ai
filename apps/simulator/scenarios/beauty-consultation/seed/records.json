@@ -1,0 +1,56 @@
+[
+  {
+    "id": "glow-slots-2026-06-12",
+    "topic": "consultation schedule",
+    "title": "Beauty Clinic consultation availability",
+    "summary": "Friday, June 12 has openings at 2:00 PM and 4:30 PM with an aesthetician."
+  },
+  {
+    "id": "glow-slots-2026-06-13",
+    "topic": "consultation schedule",
+    "title": "Beauty Clinic Saturday availability",
+    "summary": "Saturday, June 13 has openings at 10:00 AM and 1:30 PM with an aesthetician."
+  },
+  {
+    "id": "glow-slots-2026-06-15",
+    "topic": "consultation schedule",
+    "title": "Beauty Clinic Monday availability",
+    "summary": "Monday, June 15 has openings at 11:00 AM, 3:00 PM, and 5:00 PM."
+  },
+  {
+    "id": "glow-service-brightening-peel",
+    "topic": "dark spots",
+    "title": "Brightening peel consultation candidate",
+    "summary": "A brightening peel is the strongest dark-spot option, usually has two to four days of visible flaking, and requires an in-person sensitivity assessment before treatment."
+  },
+  {
+    "id": "glow-service-facial",
+    "topic": "dark spots",
+    "title": "Brightening facial consultation candidate",
+    "summary": "A brightening facial is the gentlest dark-spot option with little to no downtime, but results are more gradual and usually require a series."
+  },
+  {
+    "id": "glow-service-led",
+    "topic": "dark spots sensitive skin",
+    "title": "LED and barrier-support consultation candidate",
+    "summary": "LED and barrier-support care may suit easily irritated skin and has no downtime, but it supports skin recovery rather than directly treating deeper pigmentation."
+  },
+  {
+    "id": "glow-service-home-care",
+    "topic": "dark spots sensitive skin",
+    "title": "Home-care routine consultation candidate",
+    "summary": "A gradual home-care plan may include gentle brightening products and daily sunscreen after product review. It has minimal downtime but requires consistent use over several weeks."
+  },
+  {
+    "id": "glow-provider-ava",
+    "topic": "consultation schedule",
+    "title": "Ava aesthetician availability",
+    "summary": "Ava has consultation openings Friday at 4:30 PM and Monday at 11:00 AM."
+  },
+  {
+    "id": "glow-consult-process",
+    "topic": "in-person consultation dark spots sensitive skin",
+    "title": "Beauty Clinic in-person skin consultation",
+    "summary": "During the in-person consultation, an aesthetician reviews skin history and current products, examines sensitivity and pigmentation, confirms a suitable treatment plan, and performs treatment only after the client agrees."
+  }
+]

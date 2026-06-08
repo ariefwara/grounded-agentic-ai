@@ -4,34 +4,34 @@ import { listEngineProfileIds, loadEngineProfile } from "../src/config/engine-pr
 
 test("defines the ten engine profiles used by simulations", () => {
   assert.deepEqual(listEngineProfileIds(), [
-    "bullseye",
-    "chasewood",
-    "deltaway",
+    "banking",
+    "beauty",
+    "coffee",
+    "flight",
     "generic",
-    "glowphora",
-    "medigreen",
-    "netflicks",
-    "parcelex",
-    "starbeans",
-    "statebarn",
-    "zilloh",
+    "insurance",
+    "parcel",
+    "pharmacy",
+    "real-estate",
+    "retail",
+    "subscription",
   ]);
 });
 
 test("keeps engine behavior out of the UI profile contract", () => {
-  const profile = loadEngineProfile("deltaway");
+  const profile = loadEngineProfile("flight");
 
   assert.equal(profile.action.path, "external_api");
   assert.equal(profile.dataSource, "internal");
   assert.equal(profile.data.adapter, "firestore");
   assert.equal(profile.data.collections.records, "records");
-  assert.equal(profile.externalIntegrations["flight-booking"].baseUrlEnv, "DELTAWAY_API_URL");
+  assert.equal(profile.externalIntegrations["flight-booking"].baseUrlEnv, "FLIGHT_API_URL");
   assert.equal("theme" in profile, false);
   assert.equal("assistantName" in profile, false);
 });
 
-test("configures a deterministic Chasewood identification question", () => {
-  const profile = loadEngineProfile("chasewood");
+test("configures a deterministic Bank identification question", () => {
+  const profile = loadEngineProfile("banking");
 
   assert.match(profile.identificationQuestion, /account ID or phone number/i);
 });

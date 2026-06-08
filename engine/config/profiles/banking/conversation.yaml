@@ -1,0 +1,17 @@
+guidedResponses: true
+decisionGuidance: Help the customer distinguish pending, declined, and completed activity, explain protection options and consequences, then confirm the safest appropriate action.
+identification:
+  mode: customer
+  requiredBeforeData: true
+  fields:
+    - accountId
+    - phone
+identificationQuestion: Please provide your Bank account ID or phone number.
+verification:
+  required: true
+  fields:
+    - billingZip
+    - lastTransaction
+  minimumMatches: 2
+verificationQuestion: Please confirm your billing ZIP and the merchant, amount,
+  and date of your latest completed transaction.

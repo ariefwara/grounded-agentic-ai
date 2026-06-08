@@ -1,0 +1,8 @@
+primary: "#a20d1a"
+primaryHover: "#7d0913"
+accent: "#e50914"
+avatar: "#ffe1e3"
+outgoingBubble: "#f8dfe1"
+chatBackground: "#f4f1f1"
+backgroundImage: "/assets/backgrounds/subscription.png"
+composerBackground: "#eae5e6"

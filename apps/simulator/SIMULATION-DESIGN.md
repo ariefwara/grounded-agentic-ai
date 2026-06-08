@@ -8,7 +8,7 @@ The simulations model complete customer-service conversations for recognizable b
 
 1. Every scenario selects one profile ID. Web-chat resolves that ID through its local UI registry, while engine resolves the same ID through its local business registry.
 2. All customer-facing content is written in English.
-3. Brand names are fictional variations inspired by familiar US companies. Current examples include Bullseye Market, Starbeans Coffee, Zilloh Homes, Glowphora Skin Studio, ParcelEx, Deltaway Air, Netflicks, MediGreen Pharmacy, StateBarn Insurance, and Chasewood Bank.
+3. Brand names are fictional variations inspired by familiar US companies. Current examples include Retail Store, Coffee Catering Business, Real Estate Agency, Beauty Clinic, Parcel Service, Airline, Subscription Service, Pharmacy, Insurance Company, and Bank.
 4. Firestore is recursively deleted and seeded every time a scenario starts. The action counter is also reset, so the first created reference is deterministic for that story.
 5. Scenarios are ordered by information sensitivity. Public retail guidance comes first, followed by lead-generation and operational support, then account, health, insurance, and banking workflows.
 6. Conversations are written independently for each business. They do not share a fixed sequence of definition, lookup, document, identity, verification, action, not-found, and reset.
@@ -32,7 +32,7 @@ The simulations model complete customer-service conversations for recognizable b
 15. Retrieval answers use the configured business data, identify ambiguity, and ask for a distinguishing detail instead of guessing.
 16. Simulator never owns or transmits complete application profiles. It passes only the selected profile ID at process/application startup.
 17. Conversation requests do not contain profile configuration. The engine profile remains fixed for the lifetime of the engine process.
-18. Profile IDs represent business deployments, not use cases. For example, scenario `deltaway-flight-booking` uses profile `deltaway`.
+18. Profile IDs represent business deployments, not use cases. For example, scenario `flight-booking` uses profile `flight`.
 19. Application profile configuration is YAML and is owned independently by each application.
 20. The neutral `generic` profile is the application default; no business use case is selected implicitly.
 21. Engine internal-data access is configured by each profile's `data.yaml`; collection names and namespace paths are not selected by customer messages.
@@ -48,16 +48,16 @@ The simulations model complete customer-service conversations for recognizable b
 
 | Order | Business | Conversation goal | Identification | Verification | First action reference |
 | --- | --- | --- | --- | --- | --- |
-| 1 | Bullseye Market | Product stock and public return guidance | None | None | `RET-1001` |
-| 2 | Starbeans Coffee | Catering pickup request | Contact name | None | `CAT-2101` |
-| 3 | Zilloh Homes | Prospective buyer home tour | Name and phone | None | `TOUR-3101` |
-| 4 | Glowphora Skin Studio | Agree on and book a consultation slot | Name and mobile | None | `GLOW-4101` |
-| 5 | ParcelEx | Track a delayed package and open a trace | Tracking number | None | `TRACE-5101` |
-| 6 | Deltaway Air | Compare same-day flights and create a new booking | Traveler name and email | None | External API result |
-| 7 | Netflicks | Investigate a duplicate subscription charge | Account email | One billing match | `BILL-7101` |
-| 8 | MediGreen Pharmacy | Check and request a prescription refill | Patient phone | Date of birth | External API result |
-| 9 | StateBarn Insurance | Review a hail claim and schedule inspection | Policy number | Date of birth and billing ZIP | `CLM-9101` |
-| 10 | Chasewood Bank | Review a card transaction and create a dispute | Account ID and phone | Billing ZIP and latest transaction | `DSP-10101` |
+| 1 | Retail Store | Product stock and public return guidance | None | None | `RET-1001` |
+| 2 | Coffee Catering Business | Catering pickup request | Contact name | None | `CAT-2101` |
+| 3 | Real Estate Agency | Prospective buyer home tour | Name and phone | None | `TOUR-3101` |
+| 4 | Beauty Clinic | Agree on and book a consultation slot | Name and mobile | None | `GLOW-4101` |
+| 5 | Parcel Service | Track a delayed package and open a trace | Tracking number | None | `TRACE-5101` |
+| 6 | Airline | Compare same-day flights and create a new booking | Traveler name and email | None | External API result |
+| 7 | Subscription Service | Investigate a duplicate subscription charge | Account email | One billing match | `BILL-7101` |
+| 8 | Pharmacy | Check and request a prescription refill | Patient phone | Date of birth | External API result |
+| 9 | Insurance Company | Review a hail claim and schedule inspection | Policy number | Date of birth and billing ZIP | `CLM-9101` |
+| 10 | Bank | Review a card transaction and create a dispute | Account ID and phone | Billing ZIP and latest transaction | `DSP-10101` |
 
 ## Database Reset Contract
 

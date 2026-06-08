@@ -1,0 +1,26 @@
+[
+  {
+    "id": "doc-card-dispute",
+    "topic": "card dispute",
+    "title": "Bank Card Dispute Guide",
+    "excerpt": "Confirm whether the card is in the customer's possession, review the transaction, block the card when necessary, and create a dispute."
+  },
+  {
+    "id": "doc-card-lock",
+    "topic": "card security",
+    "title": "Card Lock Guide",
+    "excerpt": "Locking a card helps prevent new card authorizations when suspicious activity is suspected. It does not guarantee that already-authorized pending transactions will stop; an existing pending transaction may still post or may drop off. Locking the card and disputing a completed unauthorized charge address different risks and can both be appropriate."
+  },
+  {
+    "id": "doc-provisional-credit",
+    "topic": "card dispute",
+    "title": "Provisional Credit Guide",
+    "excerpt": "Some card disputes may qualify for provisional credit after the dispute case is opened and reviewed."
+  },
+  {
+    "id": "doc-transaction-status",
+    "topic": "pending completed declined transaction charge",
+    "title": "Transaction Status Guide",
+    "excerpt": "A completed transaction has posted to the account and can be reviewed for dispute when unauthorized. A pending transaction has been authorized but has not posted; it may post or drop off, and locking the card does not guarantee it will stop. A declined transaction did not post. When suspicious activity exists, locking the card helps prevent new authorizations while completed unauthorized transactions should be reviewed for dispute."
+  }
+]

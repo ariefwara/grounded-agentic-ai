@@ -1,9 +1,0 @@
-id: prescriber-approval
-type: http
-baseUrlEnv: MEDIGREEN_PRESCRIBER_API_URL
-operation:
-  method: POST
-  path: /tools/execute
-authentication:
-  type: none
-timeoutMs: 10000

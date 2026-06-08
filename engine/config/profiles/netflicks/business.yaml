@@ -1,8 +1,0 @@
-id: netflicks
-brand: Netflicks
-domain: video streaming subscription
-useCase: account billing, invoices, and duplicate charge cases
-offers:
-  - review an invoice
-  - explain a charge
-  - open a billing case

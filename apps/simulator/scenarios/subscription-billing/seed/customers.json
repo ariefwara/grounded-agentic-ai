@@ -1,0 +1,26 @@
+[
+  {
+    "id": "subscriber_subscription_001",
+    "name": "Alex Carter",
+    "email": "alex.carter@example.com",
+    "accountId": "NF-710",
+    "billingZip": "98109",
+    "lastTransaction": "$22.99 on June 2"
+  },
+  {
+    "id": "subscriber_subscription_002",
+    "name": "Jamie Fox",
+    "email": "jamie.fox@example.com",
+    "accountId": "NF-711",
+    "billingZip": "94107",
+    "lastTransaction": "$15.49 on June 1"
+  },
+  {
+    "id": "subscriber_subscription_003",
+    "name": "Robin Hall",
+    "email": "robin.hall@example.com",
+    "accountId": "NF-712",
+    "billingZip": "30309",
+    "lastTransaction": "$7.99 on May 28"
+  }
+]

@@ -1,0 +1,9 @@
+id: retail
+brand: Retail Store
+domain: general retail
+useCase: assisted product discovery, inventory, exchange guidance, and pickup purchase
+offers:
+  - compare products and specifications
+  - check store inventory
+  - explain exchanges and returns
+  - place a pickup purchase

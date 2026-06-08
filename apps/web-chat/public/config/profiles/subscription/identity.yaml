@@ -1,0 +1,7 @@
+id: subscription
+brand: Subscription Service
+assistantName: Subscription Service Support
+initials: NF
+avatarImage: "/assets/avatars/subscription.png"
+status: Account and billing help
+inputPlaceholder: Ask about Subscription Service billing

@@ -33,14 +33,14 @@ export GCP_PROJECT=your-project-id
 ## Run
 
 ```bash
-npm start -- bullseye-market
-npm start -- glowphora-consultation
-npm start -- chasewood-bank
+npm start -- retail-shopping
+npm start -- beauty-consultation
+npm start -- banking-dispute
 ```
 
-For example, `npm start -- chasewood-bank` starts the engine with
-`ENGINE_PROFILE_ID=chasewood` and opens web-chat with
-`?profile=chasewood`. The `/chat` payload does not contain profile
+For example, `npm start -- banking-dispute` starts the engine with
+`ENGINE_PROFILE_ID=banking` and opens web-chat with
+`?profile=banking`. The `/chat` payload does not contain profile
 configuration.
 
 Scenario IDs describe use cases, while profile IDs describe application
@@ -50,23 +50,23 @@ selecting a business use case as a default.
 Seed and reset Firestore without opening the browser:
 
 ```bash
-SIMULATOR_SEED_ONLY=1 npm start -- statebarn-claim
+SIMULATOR_SEED_ONLY=1 npm start -- insurance-claim
 ```
 
 ## Scenario Order
 
 The scenarios progress from public, low-sensitivity support to protected financial support:
 
-1. `bullseye-market`
-2. `starbeans-catering`
-3. `zilloh-home-tour`
-4. `glowphora-consultation`
-5. `parcelex-tracking`
-6. `deltaway-flight-booking`
-7. `netflicks-billing`
-8. `medigreen-refill`
-9. `statebarn-claim`
-10. `chasewood-bank`
+1. `retail-shopping`
+2. `coffee-catering`
+3. `real-estate-tour`
+4. `beauty-consultation`
+5. `parcel-tracking`
+6. `flight-booking`
+7. `subscription-billing`
+8. `pharmacy-refill`
+9. `insurance-claim`
+10. `banking-dispute`
 
 The detailed design rules are in [SIMULATION-DESIGN.md](./SIMULATION-DESIGN.md).
 

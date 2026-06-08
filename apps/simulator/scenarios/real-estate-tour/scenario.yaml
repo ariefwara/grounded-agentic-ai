@@ -1,0 +1,19 @@
+order: 3
+id: real-estate-tour
+title: Real Estate Agency buyer tour
+story: A first-time buyer explains priorities, compares several homes and their
+  trade-offs, then tours the strongest match.
+profileId: real-estate
+actionState:
+  prefix: TOUR
+  nextNumber: 3101
+questions:
+  - Hi.
+  - I am looking for my first home, but I am not sure where to start.
+  - Around Maple Street, under $500,000, with at least three bedrooms if possible.
+  - I care about kitchen space more than a large yard. What are my best options?
+  - Why is 742 Maple Street the better fit?
+  - Can I visit it Saturday?
+  - 11 AM works.
+  - Taylor Morgan, 7375550188.
+  - Yes, book it.

@@ -1,0 +1,22 @@
+order: 4
+id: beauty-consultation
+title: Beauty Clinic consultation
+story: A new client completes an initial chat consultation, compares plausible
+  treatment paths and trade-offs, then books an in-person assessment to confirm suitability.
+profileId: beauty
+actionState:
+  prefix: GLOW
+  nextNumber: 4101
+questions:
+  - Hi.
+  - I want help with my skin, but I do not know which service I need.
+  - I have dark spots on my cheeks that have been there for about a year.
+  - My skin gets irritated easily, and I have never had a peel.
+  - I want them lighter, but I do not want much downtime. What options fit me?
+  - What is the difference between the gentle facial and a peel?
+  - The gentle approach sounds better. What happens at the in-person consultation?
+  - That works. When can I come in?
+  - Friday afternoon.
+  - 4:30 works.
+  - Casey Brooks, 2065550199.
+  - Yes, book it.

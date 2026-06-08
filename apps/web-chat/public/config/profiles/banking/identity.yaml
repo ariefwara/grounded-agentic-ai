@@ -1,0 +1,7 @@
+id: banking
+brand: Bank
+assistantName: Bank Secure Help
+initials: CB
+avatarImage: "/assets/avatars/banking.png"
+status: Secure account support
+inputPlaceholder: Ask about your Bank account

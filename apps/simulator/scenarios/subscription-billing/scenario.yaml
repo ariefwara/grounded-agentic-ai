@@ -1,0 +1,19 @@
+order: 7
+id: subscription-billing
+title: Subscription Service subscription billing
+story: A subscriber investigates several possible billing explanations, learns
+  which charge may resolve itself, and opens a case only after comparing remedies.
+profileId: subscription
+actionState:
+  prefix: BILL
+  nextNumber: 7101
+questions:
+  - Hi.
+  - Something looks wrong with my bill.
+  - alex.carter@example.com
+  - I think I was charged twice.
+  - 98109, $22.99 on June 2.
+  - Can you compare the charges and explain what probably happened?
+  - Should I wait for the pending charge to disappear or open a case now?
+  - It has been pending for several days. What do you recommend?
+  - Yes, open a case.

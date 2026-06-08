@@ -1,0 +1,8 @@
+id: insurance
+brand: Insurance Company
+domain: property insurance
+useCase: policy-specific property claims and inspection requests
+offers:
+  - review claim status
+  - explain coverage guidance
+  - schedule an adjuster inspection

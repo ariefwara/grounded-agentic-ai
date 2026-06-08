@@ -1,0 +1,23 @@
+[
+  {
+    "id": "traveler_flight_001",
+    "name": "Morgan Reed",
+    "lastName": "Reed",
+    "bookingReference": "DW7K2P",
+    "email": "morgan.reed@example.com"
+  },
+  {
+    "id": "traveler_flight_002",
+    "name": "Lena Chen",
+    "lastName": "Chen",
+    "bookingReference": "DW8M4Q",
+    "email": "lena.chen@example.com"
+  },
+  {
+    "id": "traveler_flight_003",
+    "name": "Sam Patel",
+    "lastName": "Patel",
+    "bookingReference": "DW3R9L",
+    "email": "sam.patel@example.com"
+  }
+]

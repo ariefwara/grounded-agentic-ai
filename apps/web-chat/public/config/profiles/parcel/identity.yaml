@@ -1,0 +1,7 @@
+id: parcel
+brand: Parcel Service
+assistantName: Parcel Service Tracking
+initials: PX
+avatarImage: "/assets/avatars/parcel.png"
+status: Shipment updates
+inputPlaceholder: Enter a tracking question

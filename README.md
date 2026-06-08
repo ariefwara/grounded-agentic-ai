@@ -106,7 +106,7 @@ Start the engine:
 
 ```bash
 cd engine
-ENGINE_PROFILE_ID=bullseye npm start
+ENGINE_PROFILE_ID=retail npm start
 ```
 
 Start the web chat:
@@ -119,7 +119,7 @@ npm start
 Open:
 
 ```text
-http://localhost:4200?profile=bullseye
+http://localhost:4200?profile=retail
 ```
 
 ## Run With Docker Compose
@@ -143,28 +143,28 @@ The simulator resets and seeds Firestore for the selected scenario, starts the m
 
 ```bash
 cd apps/simulator
-npm start -- bullseye-market
+npm start -- retail-shopping
 ```
 
 Scenario order:
 
 ```text
-bullseye-market
-starbeans-catering
-zilloh-home-tour
-glowphora-consultation
-parcelex-tracking
-deltaway-flight-booking
-netflicks-billing
-medigreen-refill
-statebarn-claim
-chasewood-bank
+retail-shopping
+coffee-catering
+real-estate-tour
+beauty-consultation
+parcel-tracking
+flight-booking
+subscription-billing
+pharmacy-refill
+insurance-claim
+banking-dispute
 ```
 
 Seed Firestore without opening the browser:
 
 ```bash
-SIMULATOR_SEED_ONLY=1 npm start -- chasewood-bank
+SIMULATOR_SEED_ONLY=1 npm start -- banking-dispute
 ```
 
 ## Documentation

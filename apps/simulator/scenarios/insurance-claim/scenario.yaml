@@ -1,0 +1,20 @@
+order: 9
+id: insurance-claim
+title: Insurance Company claim
+story: A policyholder reports hail damage, learns immediate safety steps,
+  compares the available claim next steps, and schedules the most appropriate inspection.
+profileId: insurance
+actionState:
+  prefix: CLM
+  nextNumber: 9101
+questions:
+  - Hi.
+  - Hail damaged my roof. I do not know what to do next.
+  - SB-442901.
+  - I already started a claim. Can you check it?
+  - November 8, 1979. ZIP 75204.
+  - SB-CLM-221.
+  - What should I do first, and what should I avoid?
+  - Should I send photos, call a roofer, or schedule the inspection first?
+  - The roof is not leaking. What do you recommend?
+  - Yes, schedule it.

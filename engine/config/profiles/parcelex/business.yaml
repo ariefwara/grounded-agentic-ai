@@ -1,8 +1,0 @@
-id: parcelex
-brand: ParcelEx
-domain: parcel delivery
-useCase: shipment tracking, delay guidance, and carrier traces
-offers:
-  - track a shipment
-  - explain a delay
-  - open a carrier trace

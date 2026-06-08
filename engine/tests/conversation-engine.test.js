@@ -22,7 +22,7 @@ test("answers a relevant direct conversation turn", async () => {
 test("introduces configured capabilities when the customer greets the assistant", async () => {
   const engine = createTestConversationEngine({
     profile: {
-      brand: "Deltaway Air",
+      brand: "Airline",
       offers: ["search flights", "create a booking", "manage an existing trip"],
     },
   });
@@ -33,7 +33,7 @@ test("introduces configured capabilities when the customer greets the assistant"
     message: "Hi.",
   });
 
-  assert.match(result.answer, /Deltaway Air/);
+  assert.match(result.answer, /Airline/);
   assert.match(result.answer, /search flights/);
   assert.match(result.answer, /create a booking/);
   assert.match(result.answer, /manage an existing trip/);
@@ -164,7 +164,7 @@ test("does not execute a configured action before explicit confirmation", async 
       },
     },
     profile: {
-      brand: "Deltaway Air",
+      brand: "Airline",
       dataSource: "internal",
       action: { name: "create flight booking", path: "external_api" },
     },
@@ -192,7 +192,7 @@ test("does not execute an action from a decision question", async () => {
       },
     },
     profile: {
-      brand: "Netflicks",
+      brand: "Subscription Service",
       dataSource: "internal",
       guidedResponses: true,
       action: { name: "open billing case", path: "external_api" },
@@ -215,7 +215,7 @@ test("requires configured identification before protected data retrieval", async
   const engine = createTestConversationEngine({
     db,
     profile: {
-      brand: "Netflicks",
+      brand: "Subscription Service",
       identification: { mode: "customer", requiredBeforeData: true, fields: ["email"] },
     },
   });
@@ -239,7 +239,7 @@ test("collects configured identity before executing an action", async () => {
       },
     },
     profile: {
-      brand: "Deltaway Air",
+      brand: "Airline",
       identification: { mode: "traveler", fields: ["name", "email"] },
       action: { name: "create flight booking", path: "external_api" },
     },
@@ -321,7 +321,7 @@ test("requires verification before protected data retrieval", async () => {
     sessionStore,
     db,
     profile: {
-      brand: "Netflicks",
+      brand: "Subscription Service",
       verification: {
         required: true,
         fields: ["billingZip", "lastTransaction"],
@@ -373,7 +373,7 @@ test("offers profile-specific help after customer identification", async () => {
   const engine = createTestConversationEngine({
     db,
     profile: {
-      brand: "Chasewood Bank",
+      brand: "Bank",
       offers: ["review a transaction", "open a card dispute"],
     },
   });
@@ -384,7 +384,7 @@ test("offers profile-specific help after customer identification", async () => {
     message: "My account ID is CW-1",
   });
 
-  assert.match(result.answer, /Chasewood Bank/);
+  assert.match(result.answer, /Bank/);
   assert.match(result.answer, /review a transaction/);
   assert.match(result.answer, /open a card dispute/);
 });
@@ -403,7 +403,7 @@ test("continues an active action after customer identification", async () => {
     sessionStore,
     db,
     profile: {
-      brand: "Deltaway Air",
+      brand: "Airline",
       action: { name: "create flight booking", path: "external_api" },
       offers: ["search flights", "create a booking"],
     },
@@ -426,7 +426,7 @@ test("does not imply an action is ready immediately after early identification",
   const engine = createTestConversationEngine({
     db,
     profile: {
-      brand: "MediGreen",
+      brand: "Pharmacy",
       offers: ["check a prescription", "request refill approval"],
       action: { name: "request refill approval", path: "external_api" },
     },
@@ -448,7 +448,7 @@ test("uses session context for short travel option follow-ups", async () => {
     return [
       {
         id: "booking-DW7K2P",
-        title: "Deltaway booking DW7K2P",
+        title: "Airline booking DW7K2P",
         topic: "booking",
         summary: "Booking DW7K2P has a 1:40 PM option with a $35 fare difference.",
       },
@@ -457,7 +457,7 @@ test("uses session context for short travel option follow-ups", async () => {
   const engine = createTestConversationEngine({
     db,
     profile: {
-      brand: "Deltaway Air",
+      brand: "Airline",
       dataSource: "internal",
       guidedResponses: true,
       identification: { mode: "booking", fields: ["bookingReference", "lastName"] },
@@ -504,7 +504,7 @@ test("retrieves evidence again when the customer asks for the best option", asyn
   };
   const engine = createTestConversationEngine({
     db,
-    profile: { brand: "Deltaway Air", dataSource: "internal", guidedResponses: true },
+    profile: { brand: "Airline", dataSource: "internal", guidedResponses: true },
   });
 
   await engine.chat({ sessionId: "decision-session", message: "Show me available flights." });
@@ -530,7 +530,7 @@ test("treats card possession as a guided transaction follow-up", async () => {
   const engine = createTestConversationEngine({
     db,
     profile: {
-      brand: "Chasewood Bank",
+      brand: "Bank",
       dataSource: "internal",
       guidedResponses: true,
     },
@@ -555,7 +555,7 @@ test("uses profile data for customer needs during guided discovery", async () =>
   };
   const engine = createTestConversationEngine({
     db,
-    profile: { brand: "Glowphora", dataSource: "internal", guidedResponses: true },
+    profile: { brand: "Beauty Clinic", dataSource: "internal", guidedResponses: true },
   });
 
   await engine.chat({ sessionId: "discovery-session", message: "Hi." });
@@ -573,7 +573,7 @@ test("uses the assistant offer as context for a short scheduling follow-up", asy
   };
   const engine = createTestConversationEngine({
     db,
-    profile: { brand: "Glowphora", dataSource: "internal", guidedResponses: true },
+    profile: { brand: "Beauty Clinic", dataSource: "internal", guidedResponses: true },
   });
 
   await engine.chat({ sessionId: "schedule-context", message: "Hi." });
@@ -592,7 +592,7 @@ test("retrieves schedule data for a day-part preference", async () => {
   };
   const engine = createTestConversationEngine({
     db,
-    profile: { brand: "Glowphora", dataSource: "internal", guidedResponses: true },
+    profile: { brand: "Beauty Clinic", dataSource: "internal", guidedResponses: true },
   });
 
   await engine.chat({ sessionId: "day-part-session", message: "Hi." });
