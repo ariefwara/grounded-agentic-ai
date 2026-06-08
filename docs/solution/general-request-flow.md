@@ -1,42 +1,67 @@
-# Current Conversation Flow
+# Request Flow
 
-This flow represents the conversation logic currently executed by the chat endpoint. The engine now uses Google ADK as the active orchestration runtime, so the conversation is not routed through a separate local decision endpoint or legacy gate pipeline.
+This is the active path executed by `POST /chat`.
 
 ```mermaid
 flowchart TD
-    A([User sends message]) --> B[Engine receives POST /chat]
-    B --> C[Load active business profile]
-    C --> D[Load or create ADK session]
-    D --> E[Run Gemini agent with profile prompt and conversation context]
+    A[Web chat sends message and session ID] --> B[Express loads active engine runtime]
+    B --> C[ADK loads or creates in-memory session]
+    C --> D[Gemini receives profile instructions and conversation context]
+    D --> E{Is a business capability needed?}
 
-    E --> F{Need business capability?}
-    F -->|Business scope or policy context| G[Call get_business_context]
-    F -->|Products, records, schedules, policies, documents| H[Call DB-backed business tools]
-    F -->|External service needed| I[Call configured API tool]
-    F -->|Customer-specific data needed| J[Identify or verify customer]
-    F -->|Confirmed business action| K[Execute configured action]
-    F -->|No tool needed| L[Compose direct domain answer]
+    E -->|No| F[Compose a customer-facing answer]
+    E -->|Business context| G[Read profile capabilities and controls]
+    E -->|Business information| H[Search Firestore records or documents]
+    E -->|Customer-specific information| I[Identify and verify customer]
+    E -->|External information| J[Call configured external service]
+    E -->|Confirmed action| K[Execute configured business action]
 
-    G --> E
-    H --> E
-    I --> E
-    J --> E
-    K --> M[Store exact action result message in ADK session state]
-    M --> N[Return exact action result]
-    L --> O[Run ADK response guardrail]
-    E --> O
+    G --> D
+    H --> D
+    I --> D
+    J --> D
+    K --> L[Store exact action result in session state]
+    L --> M[Return action result message]
 
-    O -->|Pass| P[Export Arize/Phoenix evaluator trace when enabled]
-    O -->|Implementation detail leak| Q[Replace with customer-safe response]
-    Q --> P
-    N --> P
-    P --> R([Return answer only])
+    F --> N[Run response guardrail]
+    N -->|Pass| O[Return answer]
+    N -->|Internal language detected| P[Replace with customer-facing response]
+    P --> O
+    M --> O
+    O --> Q[Web chat displays answer only]
 ```
 
-The HTTP app is intentionally thin. It loads the selected profile, DB adapter, external integrations, internal tools, policy bundle, Arize evaluator, and ADK runtime. The `/chat` endpoint returns only the customer-facing answer.
+## HTTP Contract
 
-ADK owns the session and Gemini agent loop. The agent receives the external prompt template from `engine/prompts/adk/customer-service-agent.prompt.md`, then decides when to call business tools. Tool calls are still owned by the engine: DB retrieval, customer identification, verification, external API access, internal method calls, and business action execution are implemented as engine functions exposed to ADK.
+The frontend sends a message, optional request ID, session ID, and user context. The engine returns only:
 
-Policies are now blended into the ADK path as instruction context, tool constraints, and response guardrails. For example, protected data is blocked until the session has the required customer identification and verification state, and business actions require explicit customer confirmation before execution.
+```json
+{
+  "requestId": "generated-or-supplied-id",
+  "answer": "customer-facing response"
+}
+```
 
-Arize/Phoenix is attached to the active ADK path through guardrail and action-result evaluation. It records evaluator traces when enabled, while local fallback decisions keep the runtime usable without an external evaluator.
+Routing decisions, tool results, verification state, and evaluation details remain inside the engine.
+
+## Agent Instruction
+
+The ADK agent instruction is rendered from `engine/prompts/adk/customer-service-agent.prompt.md`. It combines the active profile with business controls and tells Gemini to guide proactively, retrieve facts through tools, stay within the business domain, compare meaningful options, and request explicit confirmation before actions.
+
+## Tool Selection
+
+The active agent can use these engine-owned capabilities:
+
+- `get_business_context`
+- `search_business_data`
+- `search_business_documents`
+- `identify_customer`
+- `verify_customer`
+- `execute_business_action`
+- `query_external_service`, only when the profile declares an integration
+
+The model selects a tool based on the conversation. The tool implementation remains authoritative for access and execution.
+
+## Evaluation
+
+Response and action evaluations always produce a local decision so the application remains usable without an external collector. When Arize/Phoenix is enabled, the same input, evidence, and decision are exported as evaluator traces for monitoring.

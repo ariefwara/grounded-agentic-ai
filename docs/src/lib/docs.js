@@ -37,19 +37,10 @@ export const docGroups = [
   {
     title: "Solution",
     items: [
-      { slug: "solution/general-request-flow", title: "Conversation Flow" },
-      { slug: "solution/system-sequence", title: "System Sequence" },
-      { slug: "solution/sequences/conversation-entry", title: "Conversation Entry" },
-      { slug: "solution/sequences/intent-understanding", title: "Conversation Routing" },
-      { slug: "solution/sequences/relevant-answer", title: "Relevant Answer" },
-      { slug: "solution/sequences/clarification-flow", title: "Clarification Flow" },
-      { slug: "solution/sequences/customer-context-resolution", title: "Customer Context Resolution" },
-      { slug: "solution/sequences/eligibility-verification", title: "Customer Verification" },
-      { slug: "solution/sequences/data-retrieval", title: "Data Retrieval" },
-      { slug: "solution/sequences/document-retrieval", title: "Document Retrieval" },
-      { slug: "solution/sequences/action-execution", title: "Action Execution" },
-      { slug: "solution/sequences/correction-intent-change-cancel", title: "Correction / Intent Change / Cancel" },
-      { slug: "solution/sequences/failure-refusal-recovery", title: "Unsupported / Recovery" },
+      { slug: "solution/system-sequence", title: "Technical Architecture" },
+      { slug: "solution/general-request-flow", title: "Request Flow" },
+      { slug: "solution/sequences/conversation-entry", title: "Conversation Lifecycle" },
+      { slug: "solution/sequences/action-execution", title: "Protected Actions" },
     ],
   },
 ];

@@ -21,6 +21,18 @@ Open:
 http://localhost:4321
 ```
 
+Production build:
+
+```bash
+npm run build
+```
+
+The Firebase-hosted site is available at:
+
+```text
+https://agentic-ai-e6e15.web.app
+```
+
 Regenerate all public feature pages with DeepSeek:
 
 ```bash

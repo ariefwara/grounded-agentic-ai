@@ -1,51 +1,62 @@
-# Action Execution
+# Protected Actions
 
 ```mermaid
 sequenceDiagram
     autonumber
     actor User
     participant Engine
+    participant Session as ADK Session
     participant Gemini
-    participant Session
-    participant DB
-    participant API
+    participant DB as Firestore
+    participant API as External API
     participant Arize
 
-    User->>Engine: Explicitly confirm configured action
-    Engine->>Session: Load ADK session state
-    Session-->>Engine: Identification, verification, and prior tool state
+    User->>Engine: Confirm the proposed action
+    Engine->>Session: Read identification and verification state
 
-    opt Profile requires identification and customer is unknown
-        Engine->>Engine: Route to customer context resolution
-        Engine-->>User: Ask for configured identifier
+    alt Required customer access is incomplete
+        Engine-->>Gemini: Identification or verification required
+        Gemini-->>User: Ask for the next required detail
+    else Confirmation is not explicit
+        Engine-->>Gemini: Confirmation required
+        Gemini-->>User: Summarize the action and ask for confirmation
+    else Action is permitted
+        alt Firestore action
+            Engine->>DB: Execute transactional data change
+            DB-->>Engine: Completed record and reference
+        else External action
+            Engine->>API: Execute configured operation
+            API-->>Engine: External result
+            Engine->>DB: Store local action reference
+            DB-->>Engine: Stored record
+        else Internal method
+            Engine->>Engine: Run configured internal method
+        end
+
+        Engine->>Session: Store exact customer result message
+        Engine->>Arize: Export action-result evaluation when enabled
+        Engine-->>User: Return completed result and reference
     end
-
-    Engine->>Engine: Use configured profile action name, path, and integration
-
-    alt Internal data action
-        Engine->>DB: Execute transactional data change
-        DB-->>Engine: Completed record with generated reference
-    else External API action
-        Engine->>API: Call configured action operation
-        API-->>Engine: External action result or unavailable result
-    else Internal method
-        Engine->>Engine: Run internal method
-        Engine-->>Engine: Internal method result
-    end
-
-    Engine->>Session: Store last action and exact customer message
-    Engine->>Gemini: Continue ADK agent loop
-    Gemini-->>Engine: Model event after tool execution
-    Engine->>Session: Read exact customer message from ADK state
-    Engine->>Arize: Evaluate action result message
-    Arize-->>Engine: pass or review trace
-    Engine-->>User: Exact action result message
 ```
 
-Action confirmation is enforced by the ADK business tool. The tool refuses execution unless the latest customer message contains explicit confirmation such as "yes," "confirm," "go ahead," or domain-specific confirmation wording. Before that point, the agent continues comparison, discovery, or confirmation.
+## Confirmation Rule
 
-For most business profiles, the action path is fixed in profile configuration. The supported paths are a Firestore data change, a configured external API call, or an internal Engine method.
+The action tool accepts explicit confirmation phrases such as “yes,” “confirm,” “go ahead,” “book it,” or “submit it.” An inquiry, preference, comparison, or ambiguous reply cannot execute an action.
 
-The internal-data path runs a Firestore transaction that increments a configured counter and writes an action record. The returned record includes the generated reference and completion result.
+## Access Rule
 
-The action tool checks identification and verification state before execution when the active profile requires protected customer context. After execution, the tool creates the customer-facing result message from the actual action result. The ADK response callback returns that message exactly so Gemini cannot add unsupported promises.
+If the active profile protects customer data or actions, the tool checks session identification and verification state before execution. Gemini cannot bypass this check because it runs inside the engine-owned tool.
+
+## Action Paths
+
+Profiles currently support three execution paths:
+
+1. A Firestore transaction that updates business data and creates a reference.
+2. A configured external API operation, followed by a local action record.
+3. An internal business method executed within the engine.
+
+## Result Integrity
+
+The action tool creates the customer-facing message from the actual execution result and stores it in session state. The ADK response callback consumes that message and returns it exactly. This prevents the model from adding unsupported promises about delivery, notifications, timing, or follow-up.
+
+The runtime also contains a narrow fallback for confirmed actions when Gemini asks for confirmation again after all required access conditions have already been met. In that case, the engine executes the configured action directly and still formats the answer from the real result.

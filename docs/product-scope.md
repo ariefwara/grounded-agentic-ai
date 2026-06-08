@@ -24,7 +24,7 @@ The assistant explains what it can help with, asks focused questions, presents u
 - **Connected service.** It can read internal Firestore data, call configured external APIs, run internal methods, and return the actual result.
 - **Appropriate customer verification.** Public conversations remain frictionless, while sensitive requests can require business-specific identity checks.
 - **Reusable deployments.** One engine can support distinct businesses through profile configuration instead of separate conversation code.
-- **Observable AI behavior.** Arize evaluation hooks and timing logs make response quality and latency visible during development and production.
+- **Observable AI behavior.** Arize/Phoenix evaluator traces make response quality, policy alignment, and completed action results visible when observability is enabled.
 - **Repeatable demonstrations.** Browser-based scenarios reset their data, run a complete customer story, and show the result in the real chat UI.
 
 ## A Complete Customer Journey
