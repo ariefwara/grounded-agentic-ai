@@ -1,0 +1,69 @@
+<!DOCTYPE html><html lang="en"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width"><meta name="description" content="AI Assistant documentation"><title>Product Scope | AI Assistant Docs</title><style>:root{color:#17202a;background:#f7f8fa;font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,sans-serif;font-synthesis:none;text-rendering:optimizeLegibility}*{box-sizing:border-box}body{margin:0}.topbar{position:sticky;top:0;z-index:20;display:flex;height:3.75rem;align-items:center;justify-content:space-between;border-bottom:1px solid #d9dee5;background:#fff;padding:0 1.25rem}.brand{display:flex;align-items:center;gap:.65rem;color:#17202a;font-size:.94rem;font-weight:700;text-decoration:none}.brand-mark{display:grid;width:1.85rem;height:1.85rem;place-items:center;border-radius:6px;background:#176b5b;color:#fff;font-size:.65rem}.page-shell{display:grid;min-height:calc(100vh - 3.75rem);grid-template-columns:17rem minmax(0,1fr)}.sidebar{border-right:1px solid #d9dee5;background:#fff;padding:1rem .75rem 2rem}.nav-group+.nav-group{margin-top:1.35rem}.nav-group h2{margin:0 0 .35rem;padding:0 .55rem;color:#68737d;font-size:.68rem;font-weight:800;letter-spacing:0;text-transform:uppercase}.nav-group ul{margin:0;padding:0;list-style:none}.nav-group a{display:block;border-radius:5px;color:#42505c;font-size:.82rem;line-height:1.25;padding:.43rem .55rem;text-decoration:none}.nav-group a:hover{background:#f1f4f5;color:#17202a}.nav-group a.active{background:#e2f1ed;color:#11584d;font-weight:700}.content{min-width:0;padding:2.3rem clamp(1.25rem,3vw,3rem) 4rem}.doc-content{width:100%;max-width:82rem;color:#2b3640;font-size:.96rem;line-height:1.72}.doc-content h1,.doc-content h2,.doc-content h3{color:#17202a;line-height:1.3}.doc-content h1{margin:0 0 1.4rem;font-size:2rem}.doc-content h2{margin:2.3rem 0 .8rem;border-bottom:1px solid #e2e6ea;padding-bottom:.45rem;font-size:1.35rem}.doc-content h3{margin:1.65rem 0 .55rem;font-size:1.08rem}.doc-content p{margin:.85rem 0}.doc-content a{color:#08776a}.doc-content blockquote{margin:1rem 0;border-left:3px solid #22a08d;background:#eef7f5;padding:.45rem 1rem}.doc-content code{border-radius:4px;background:#eef1f3;padding:.12rem .3rem;font-size:.86em}.doc-content pre{overflow-x:auto;border:1px solid #d9dee5;border-radius:6px;background:#20282f;color:#edf3f5;padding:1rem}.doc-content pre code{background:transparent;padding:0}.doc-content .mermaid{overflow-x:auto;margin:1rem 0 1.6rem;border:1px solid #d9dee5;border-radius:6px;background:#fff;padding:1rem}.doc-content .mermaid svg{display:block;width:100%;min-width:44rem;max-width:100%}.menu-button{display:none}@media(max-width:760px){.page-shell{display:block}.sidebar{position:fixed;top:3.75rem;bottom:0;left:0;z-index:10;width:min(18rem,88vw);overflow-y:auto;transform:translate(-100%);transition:transform .16s ease}.sidebar.open{transform:translate(0)}.menu-button{display:grid;width:2rem;height:2rem;place-content:center;gap:.2rem;border:0;background:transparent}.menu-button span{width:1.1rem;height:2px;background:#42505c}.content{padding-top:1.7rem}.doc-content h1{font-size:1.65rem}}
+</style></head> <body> <header class="topbar"> <a class="brand" href="/grounded-agentic-ai/docs/product-scope"> <span class="brand-mark">AI</span> <span>AI Assistant Docs</span> </a> <button class="menu-button" type="button" aria-label="Toggle navigation" data-menu-button> <span></span><span></span><span></span> </button> </header> <div class="page-shell"> <aside class="sidebar" data-sidebar> <nav aria-label="Documentation navigation"> <section class="nav-group"> <h2>Overview</h2> <ul> <li> <a class="active" href="/grounded-agentic-ai/docs/product-scope"> Product Scope </a> </li> </ul> </section><section class="nav-group"> <h2>Features</h2> <ul> <li> <a href="/grounded-agentic-ai/docs/features/guided-conversations"> Guided Conversations </a> </li><li> <a href="/grounded-agentic-ai/docs/features/confident-decisions"> Confident Decisions </a> </li><li> <a href="/grounded-agentic-ai/docs/features/adaptive-trust"> Adaptive Trust </a> </li><li> <a href="/grounded-agentic-ai/docs/features/completed-actions"> Completed Actions </a> </li><li> <a href="/grounded-agentic-ai/docs/features/business-specific-experiences"> Business-Specific Experiences </a> </li> </ul> </section><section class="nav-group"> <h2>Solution</h2> <ul> <li> <a href="/grounded-agentic-ai/docs/solution/general-request-flow"> Conversation Flow </a> </li><li> <a href="/grounded-agentic-ai/docs/solution/system-sequence"> System Sequence </a> </li><li> <a href="/grounded-agentic-ai/docs/solution/sequences/conversation-entry"> Conversation Entry </a> </li><li> <a href="/grounded-agentic-ai/docs/solution/sequences/intent-understanding"> Conversation Routing </a> </li><li> <a href="/grounded-agentic-ai/docs/solution/sequences/relevant-answer"> Relevant Answer </a> </li><li> <a href="/grounded-agentic-ai/docs/solution/sequences/clarification-flow"> Clarification Flow </a> </li><li> <a href="/grounded-agentic-ai/docs/solution/sequences/customer-context-resolution"> Customer Context Resolution </a> </li><li> <a href="/grounded-agentic-ai/docs/solution/sequences/eligibility-verification"> Customer Verification </a> </li><li> <a href="/grounded-agentic-ai/docs/solution/sequences/data-retrieval"> Data Retrieval </a> </li><li> <a href="/grounded-agentic-ai/docs/solution/sequences/document-retrieval"> Document Retrieval </a> </li><li> <a href="/grounded-agentic-ai/docs/solution/sequences/action-execution"> Action Execution </a> </li><li> <a href="/grounded-agentic-ai/docs/solution/sequences/correction-intent-change-cancel"> Correction / Intent Change / Cancel </a> </li><li> <a href="/grounded-agentic-ai/docs/solution/sequences/failure-refusal-recovery"> Unsupported / Recovery </a> </li> </ul> </section> </nav> </aside> <main class="content"> <article class="doc-content">  <div><h1>AI Customer Service Engine</h1>
+<p>Turn business data, policies, and operational tools into customer conversations that can guide decisions and complete real work.</p>
+<p>The product is a reusable Node.js engine for building business-specific AI assistants. Each deployment can have its own brand, conversation style, customer journey, data model, verification rules, integrations, and chat appearance. Gemini helps interpret every turn and compose natural responses, while the engine keeps the conversation connected to configured business capabilities.</p>
+<h2>What Customers Experience</h2>
+<p>Customers do not need to know which feature, database, or workflow they need. They can start with short messages such as:</p>
+<blockquote>
+<p>I need an air fryer.</p>
+</blockquote>
+<blockquote>
+<p>My delivery is late.</p>
+</blockquote>
+<blockquote>
+<p>I want to book something for my skin.</p>
+</blockquote>
+<p>The assistant explains what it can help with, asks focused questions, presents useful options, resolves uncertainty, and proposes a clear next step. When an action is available, it collects the required details and asks for confirmation before executing it.</p>
+<h2>What Businesses Gain</h2>
+<ul>
+<li><strong>A proactive service experience.</strong> The assistant guides customers instead of waiting for perfectly written requests.</li>
+<li><strong>More confident decisions.</strong> It compares realistic options using prices, specifications, availability, policies, and customer priorities.</li>
+<li><strong>Business-aware persuasion.</strong> It turns legitimate strengths such as warranties, exchanges, flexible scheduling, and service guarantees into reasons to proceed.</li>
+<li><strong>Connected service.</strong> It can read internal Firestore data, call configured external APIs, run internal methods, and return the actual result.</li>
+<li><strong>Appropriate customer verification.</strong> Public conversations remain frictionless, while sensitive requests can require business-specific identity checks.</li>
+<li><strong>Reusable deployments.</strong> One engine can support distinct businesses through profile configuration instead of separate conversation code.</li>
+<li><strong>Observable AI behavior.</strong> Arize evaluation hooks and timing logs make response quality and latency visible during development.</li>
+<li><strong>Repeatable demonstrations.</strong> Browser-based scenarios reset their data, run a complete customer story, and show the result in the real chat UI.</li>
+</ul>
+<h2>A Complete Customer Journey</h2>
+<p>The engine supports more than question answering. A conversation can move through:</p>
+<ol>
+<li>A branded welcome and capability introduction.</li>
+<li>Intent and context understanding across multiple turns.</li>
+<li>Guided discovery of needs, preferences, and constraints.</li>
+<li>Retrieval from internal data, business documents, or external services.</li>
+<li>Comparison of multiple viable options.</li>
+<li>A recommendation supported by relevant evidence.</li>
+<li>Objection handling using applicable policy and operational facts.</li>
+<li>Customer identification or verification when the request requires it.</li>
+<li>Explicit confirmation before a business action.</li>
+<li>Action execution with a real reference or result.</li>
+<li>Recovery when information is missing, unsupported, or inconsistent.</li>
+</ol>
+<p>The path is not fixed. A retail shopper, property lead, clinic customer, airline passenger, pharmacy customer, policyholder, and banking customer can each follow a different journey.</p>
+<h2>Product Architecture</h2>
+<p>The system is organized as independent applications:</p>
+<ul>
+<li><strong>Engine:</strong> Express and Node.js orchestration, Gemini interaction, sessions, data access, integrations, controls, and action execution.</li>
+<li><strong>Web chat:</strong> Angular and DaisyUI customer interface with profile-specific branding and direct engine communication.</li>
+<li><strong>Simulator:</strong> Scenario runner that seeds Firestore and drives realistic conversations through the visible web chat.</li>
+<li><strong>Mock API:</strong> Configurable external service used where a scenario needs an integration without a live provider.</li>
+<li><strong>Documentation:</strong> Astro application for product and solution documentation.</li>
+</ul>
+<p>Each application has its own package definition and Dockerfile. Docker Compose coordinates the applications locally.</p>
+<h2>Profile-Driven Deployment</h2>
+<p>A profile is an application configuration for one business, not a test case. Engine profiles use separate YAML files for:</p>
+<ul>
+<li>Business identity, domain, and supported services.</li>
+<li>Conversation behavior and decision guidance.</li>
+<li>Firestore collections and retrieval configuration.</li>
+<li>External integrations and action paths.</li>
+</ul>
+<p>The web chat has matching YAML configuration for identity and appearance. The simulator starts the engine and UI with only the selected profile name, then loads scenario data separately from JSON.</p>
+<p>The repository currently includes a generic profile and ten business profiles spanning retail, coffee, property, beauty, delivery, travel, streaming, pharmacy, insurance, and banking.</p>
+<h2>Current Boundaries</h2>
+<p>The current implementation is a development platform and demonstrator. It provides working multi-turn orchestration, profile configuration, Firestore retrieval, configurable integrations, action execution, evaluation hooks, and end-to-end simulation.</p>
+<p>Production deployment still requires business-owned decisions for authentication, authorization, privacy, retention, human escalation, integration credentials, operational monitoring, and domain-specific compliance. The engine supplies the control points; each deployment must configure and validate them for its own risk.</p>
+<h2>Start Exploring</h2>
+<p>Begin with <strong>Guided Conversations</strong> to see how the assistant leads customers forward, then explore <strong>Confident Decisions</strong>, <strong>Adaptive Trust</strong>, <strong>Completed Actions</strong>, and <strong>Business-Specific Experiences</strong>.</p>
+</div>  </article> </main> </div> <script type="module" src="/grounded-agentic-ai/_astro/DocsLayout.astro_astro_type_script_index_0_lang.Bqsd1I4R.js"></script> </body> </html>
