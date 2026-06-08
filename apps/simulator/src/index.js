@@ -8,6 +8,7 @@ import { simulationScenarios } from "./scenario-catalog.js";
 const ROOT = new URL("../../..", import.meta.url).pathname;
 const WEB_URL = process.env.WEB_CHAT_URL || "http://localhost:4200";
 const CHROME_PATH = process.env.CHROME_PATH || "/usr/bin/google-chrome";
+const RECORDING_TAIL_MS = Number(process.env.SIMULATOR_RECORDING_TAIL_MS || 5_000);
 const execFileAsync = promisify(execFile);
 const children = [];
 
@@ -55,13 +56,15 @@ async function main() {
 
 async function runBrowserScenario(scenario) {
   await minimizeAllWindows();
-  const browser = await chromium.launch({
-    executablePath: CHROME_PATH,
-    headless: false,
-    args: ["--new-window"],
-  });
+  const recorder = await startScreenRecorder();
+  let browser;
 
   try {
+    browser = await chromium.launch({
+      executablePath: CHROME_PATH,
+      headless: false,
+      args: ["--new-window"],
+    });
     const context = await browser.newContext({ viewport: null });
     await context.addInitScript(
       ({ profileId, sessionId }) => {
@@ -92,7 +95,10 @@ async function runBrowserScenario(scenario) {
 
     await sleep(10_000);
   } finally {
-    await browser.close();
+    if (browser) await browser.close();
+    await minimizeAllWindows();
+    await sleep(RECORDING_TAIL_MS);
+    await stopScreenRecorder(recorder);
   }
 }
 
@@ -108,6 +114,8 @@ async function placeBrowserWindow(browser, page) {
     top: window.screen.availTop,
     width: window.screen.availWidth,
     height: window.screen.availHeight,
+    screenWidth: window.screen.width,
+    screenHeight: window.screen.height,
   }));
   const margin = 20;
   const expectedBounds = {
@@ -136,6 +144,94 @@ async function placeBrowserWindow(browser, page) {
         `Browser placement mismatch for ${key}: expected ${expectedBounds[key]}, received ${bounds[key]}.`,
       );
     }
+  }
+}
+
+async function startScreenRecorder() {
+  const output = process.env.SIMULATOR_RECORD_OUTPUT;
+  if (!output) return null;
+
+  const screen = await getDesktopWorkArea();
+  const sink = process.env.SIMULATOR_AUDIO_SINK || (await getDefaultAudioSink());
+  const args = [
+    "-y",
+    "-thread_queue_size",
+    "1024",
+    "-f",
+    "x11grab",
+    "-framerate",
+    "30",
+    "-video_size",
+    `${screen.width}x${screen.height}`,
+    "-i",
+    `${process.env.DISPLAY || ":0"}+${screen.left},${screen.top}`,
+  ];
+  if (sink) {
+    args.push("-f", "pulse", "-i", `${sink}.monitor`);
+  }
+  args.push(
+    "-vf",
+    "scale=1920:970:flags=lanczos",
+    "-c:v",
+    "libx264",
+    "-preset",
+    "ultrafast",
+    "-crf",
+    "19",
+    "-pix_fmt",
+    "yuv420p",
+  );
+  if (sink) args.push("-c:a", "aac", "-b:a", "192k");
+  args.push("-movflags", "+faststart", output);
+
+  const recorder = spawn("ffmpeg", args, {
+    cwd: ROOT,
+    stdio: ["pipe", "ignore", "pipe"],
+  });
+  let errorOutput = "";
+  recorder.stderr.on("data", (chunk) => {
+    errorOutput = `${errorOutput}${chunk}`.slice(-4000);
+  });
+  recorder.errorOutput = () => errorOutput;
+  await sleep(1_000);
+  if (recorder.exitCode !== null) {
+    throw new Error(`Screen recorder failed to start: ${errorOutput}`);
+  }
+  console.log(`recording: ${output}`);
+  return recorder;
+}
+
+async function getDesktopWorkArea() {
+  const { stdout } = await execFileAsync("xprop", ["-root", "_NET_WORKAREA"]);
+  const match = stdout.match(/=\s*(\d+),\s*(\d+),\s*(\d+),\s*(\d+)/);
+  if (!match) throw new Error("Could not determine the X11 desktop work area.");
+  return {
+    left: Number(match[1]),
+    top: Number(match[2]),
+    width: Number(match[3]),
+    height: Number(match[4]),
+  };
+}
+
+async function stopScreenRecorder(recorder) {
+  if (!recorder || recorder.exitCode !== null) return;
+  const exited = waitForExit(recorder);
+  recorder.stdin.write("q");
+  await Promise.race([exited, sleep(10_000)]);
+  if (recorder.exitCode === null) recorder.kill("SIGTERM");
+  await waitForExit(recorder);
+  if (recorder.exitCode !== 0) {
+    throw new Error(`Screen recorder failed: ${recorder.errorOutput()}`);
+  }
+}
+
+async function getDefaultAudioSink() {
+  if (process.platform !== "linux") return "";
+  try {
+    const { stdout } = await execFileAsync("pactl", ["get-default-sink"]);
+    return stdout.trim();
+  } catch {
+    return "";
   }
 }
 

@@ -1,238 +1,206 @@
-# AI Assistant Workspace
+# Agentic AI for Business
 
-Workspace ini berisi beberapa project npm terpisah. Tidak ada `package.json` di root, jadi semua perintah npm dijalankan dari folder project masing-masing.
+Most businesses already meet customers online, but many still cannot guide them the way a good human service team would.
 
-## Project
+Human support understands context, but it is expensive, limited by operating hours, and difficult to scale. Traditional chatbots are always available, but they often depend on menus and scripted flows.
 
-- `engine/` - Express API untuk menerima pesan chat dan mengambil jawaban dari LLM.
-- `apps/web-chat/` - Angular chat UI.
-- `apps/simulator/` - Playwright simulator untuk mengirim pertanyaan ke web-chat.
-- `apps/mock-api/` - mock external API dan tools untuk simulasi.
-- `docs/` - Astro documentation site.
+This project is an agentic AI customer-service system that helps businesses turn online conversations into guided decisions and completed actions.
 
-## Setup Awal
+## What It Does
 
-Install dependency tiap project:
+The same reusable engine adapts across ten business scenarios:
 
-```bash
-cd engine
-npm install
+1. **Retail product guidance** - compares available items and uses exchange policy to reduce purchase hesitation.
+2. **Coffee catering** - turns a short event request into a ready-to-fulfill order.
+3. **Real estate tour scheduling** - guides a prospect from preferences to a tour appointment.
+4. **Beauty consultation** - explains relevant treatment directions while preserving professional boundaries.
+5. **Parcel tracking** - reads shipment status and escalates only when policy supports it.
+6. **Flight booking** - compares schedule, price, and convenience before booking.
+7. **Subscription billing** - verifies the customer, explains charge status, and opens a case when justified.
+8. **Pharmacy refill** - verifies identity, retrieves prescription records, and submits the correct request.
+9. **Insurance claim assistance** - combines claim data and policy guidance before scheduling inspection.
+10. **Bank card dispute** - verifies the customer, reviews transaction state, and opens a dispute after confirmation.
 
-cd ../apps/web-chat
-npm install
+Across these scenarios, the goal is not only to answer questions. The goal is to guide customers toward clear outcomes while keeping the business in control.
 
-cd ../simulator
-npm install
+## Stack
 
-cd ../mock-api
-npm install
+- **Node.js Engine** manages conversation flow, session state, policy checks, internal tools, external API calls, and action confirmation.
+- **Gemini** helps understand each customer message, ask follow-up questions, compare options, and compose natural responses.
+- **Firestore** stores business data for each profile, including products, schedules, records, policies, and customer context.
+- **Google Cloud Run** can deploy the web chat, engine, mock API, and documentation as services.
+- **Arize / Phoenix** provides observability and evaluation for AI behavior in development and production.
 
-cd ../../docs
-npm install
+## Repository Layout
+
+There is no root `package.json`. Each npm project owns its own dependencies.
+
+```text
+engine/          Express API, orchestration, profiles, prompts, policies, data access
+apps/web-chat/  Angular chat interface with per-business UI profiles
+apps/simulator/ Playwright simulator and Firestore seed scenarios
+apps/mock-api/  Mock external APIs/tools for local simulations
+docs/           Astro documentation site
 ```
 
-Siapkan `.env` di root dari contoh:
+## Technical Documentation
 
-```bash
-cp .env.example .env
+Detailed technical documentation, feature explanations, and solution flows are published through GitHub Pages:
+
+```text
+https://ariefwara.github.io/grounded-agentic-ai/
 ```
 
-Untuk provider Vertex, pastikan `gcloud` sudah login:
+The source for that documentation lives in `docs/`.
+
+## Requirements
+
+- Node.js 20+
+- npm
+- Docker, optional
+- Google Cloud CLI, when using Firestore
+- Application Default Credentials for Firestore
 
 ```bash
 gcloud auth application-default login
 gcloud auth login
 ```
 
-## Menjalankan Aplikasi Manual
-
-Terminal 1, jalankan engine:
+Create local environment config:
 
 ```bash
-cd engine
-npm start
+cp .env.example .env
 ```
 
-Engine berjalan di:
-
-```text
-http://localhost:3000
-```
-
-Terminal 2, jalankan web-chat:
+Set at minimum:
 
 ```bash
-cd apps/web-chat
-npm start
+GCP_PROJECT=your-project-id
+FIRESTORE_PROJECT_ID=your-project-id
+FIRESTORE_DATABASE_ID=(default)
+LLM_PROVIDER=gemini
+GEMINI_API_KEY=your-gemini-key
 ```
 
-Buka:
+## Install
 
-```text
-http://localhost:4200
+Install dependencies inside each project:
+
+```bash
+cd engine && npm install
+cd ../apps/web-chat && npm install
+cd ../simulator && npm install
+cd ../mock-api && npm install
+cd ../../docs && npm install
 ```
 
-Opsional, jalankan mock external API untuk simulasi API/tools:
+## Run Locally
+
+Start the mock external API:
 
 ```bash
 cd apps/mock-api
 npm start
 ```
 
-Mock API berjalan di:
+Start the engine:
+
+```bash
+cd engine
+ENGINE_PROFILE_ID=bullseye npm start
+```
+
+Start the web chat:
+
+```bash
+cd apps/web-chat
+npm start
+```
+
+Open:
 
 ```text
-http://localhost:3002
+http://localhost:4200?profile=bullseye
 ```
 
-## Menjalankan Simulasi
-
-Simulator otomatis seed Firestore untuk skenario yang dipilih, menjalankan mock-api, engine, web-chat, membuka Chrome, mengetik pertanyaan ke input chat per kata, menunggu jawaban, lalu lanjut ke pertanyaan berikutnya.
-
-Pastikan GCP credential tersedia untuk Firestore:
-
-```bash
-gcloud auth application-default login
-gcloud auth login
-export GCP_PROJECT=your-project-id
-```
-
-Simulasi cepat 5 pertanyaan:
-
-```bash
-cd apps/simulator
-npm start -- scenario-quick-5
-```
-
-Simulasi penuh 50 pertanyaan:
-
-```bash
-cd apps/simulator
-npm start -- scenario-1
-```
-
-Sepuluh skenario use case:
-
-```text
-retail-refund
-banking-account
-insurance-claim
-travel-booking
-healthcare-appointment
-education-enrollment
-logistics-delivery
-subscription-billing
-property-maintenance
-public-service
-```
-
-Seed Firestore saja:
-
-```bash
-cd apps/simulator
-SIMULATOR_SEED_ONLY=1 npm start -- retail-refund
-```
-
-Setelah selesai, simulator menutup browser dan mematikan server lokal yang dijalankan olehnya.
-
-## Docker Compose
-
-Untuk menjalankan service utama via Docker:
+## Run With Docker Compose
 
 ```bash
 docker compose up --build engine web-chat mock-api docs
 ```
 
-URL:
+Services:
 
 ```text
 web-chat: http://localhost:4200
-engine: http://localhost:3000
+engine:   http://localhost:3000
 mock-api: http://localhost:3002
-docs: http://localhost:4321
+docs:     http://localhost:4321
 ```
 
-## Menjalankan Dokumentasi
+## Run Simulations
 
-Development server:
+The simulator resets and seeds Firestore for the selected scenario, starts the mock API, engine, and web chat, opens Chrome, and drives the conversation.
+
+```bash
+cd apps/simulator
+npm start -- bullseye-market
+```
+
+Scenario order:
+
+```text
+bullseye-market
+starbeans-catering
+zilloh-home-tour
+glowphora-consultation
+parcelex-tracking
+deltaway-flight-booking
+netflicks-billing
+medigreen-refill
+statebarn-claim
+chasewood-bank
+```
+
+Seed Firestore without opening the browser:
+
+```bash
+SIMULATOR_SEED_ONLY=1 npm start -- chasewood-bank
+```
+
+## Documentation
 
 ```bash
 cd docs
 npm run dev
 ```
 
-Build dan host menggunakan Node.js:
-
-```bash
-cd docs
-npm run build
-npm start
-```
-
-Buka:
+Open:
 
 ```text
 http://localhost:4321
 ```
 
-## Generate Gambar dengan Z-Image
-
-Konfigurasi FAL dibaca dari `.env` root:
+Build and serve:
 
 ```bash
-FAL_KEY=...
-FAL_IMAGE_MODEL=fal-ai/z-image/turbo/lora
-```
-
-Generate gambar portrait:
-
-```bash
-node scripts/generate-z-image.mjs \
-  --prompt "A premium editorial scene of an AI customer service conversation" \
-  --output output/images/customer-service.png
-```
-
-Prompt juga dapat dibaca dari file:
-
-```bash
-node scripts/generate-z-image.mjs \
-  --prompt-file prompts/customer-service-image.txt
-```
-
-Validasi model dan request tanpa generate gambar:
-
-```bash
-node scripts/generate-z-image.mjs \
-  --prompt "Test prompt" \
-  --dry-run
-```
-
-## Test
-
-Engine:
-
-```bash
-cd engine
-npm test
-```
-
-Web-chat build:
-
-```bash
-cd apps/web-chat
 npm run build
+npm start
 ```
 
-Simulator syntax check:
+## Tests
 
 ```bash
-cd apps/simulator
-node --check src/index.js
+cd engine && npm test
+cd ../apps/mock-api && npm test
+cd ../simulator && npm test
+cd ../web-chat && npm run build
 ```
 
-Mock API:
+## Notes
 
-```bash
-cd apps/mock-api
-npm test
-```
+- Business profiles are configured in YAML under `engine/config/profiles/<profile>/`.
+- Web chat profiles are configured under `apps/web-chat/public/config/profiles/<profile>/`.
+- Simulation seed data is JSON under `apps/simulator/scenarios/<scenario>/seed/`.
+- Prompts are stored as one prompt template per file under `engine/prompts/`.
+- Keep secret values in local environment variables.

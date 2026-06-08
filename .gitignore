@@ -8,3 +8,30 @@ output/
 .angular/
 .astro/
 .DS_Store
+
+# Local credentials and browser session files.
+yt-coockies.txt
+yt-cookies.txt
+*.cookies.txt
+*.cookie.txt
+
+# Demo/video production artifacts. Keep the source apps and docs in git;
+# publish rendered videos through YouTube/Vimeo instead.
+recordings/
+narration/
+assets/wallpapers/
+
+# Local video publishing / voiceover generation helpers, not needed to run
+# the competition project.
+scripts/upload-youtube-studio.mjs
+scripts/generate-elevenlabs-voiceover.mjs
+scripts/record-simulations.mjs
+
+# Generated media and review artifacts outside app runtime assets.
+*.mp4
+*.mp3
+*.wav
+*.webm
+*.mov
+*.srt
+*.vtt

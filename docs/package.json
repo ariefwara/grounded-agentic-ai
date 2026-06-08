@@ -6,11 +6,10 @@
   "scripts": {
     "dev": "astro dev --host 0.0.0.0",
     "build": "astro build",
-    "start": "node ./dist/server/entry.mjs",
+    "start": "astro preview --host 0.0.0.0",
     "generate:features": "node ../scripts/generate-feature-docs-with-deepseek.mjs"
   },
   "dependencies": {
-    "@astrojs/node": "^9.5.1",
     "astro": "^5.16.3",
     "marked": "^17.0.1",
     "mermaid": "^11.15.0"

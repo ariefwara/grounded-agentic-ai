@@ -56,6 +56,10 @@ export const docGroups = [
 
 const docsBySlug = new Map(docGroups.flatMap((group) => group.items).map((item) => [item.slug, item]));
 
+export function getDocumentSlugs() {
+  return [...docsBySlug.keys()];
+}
+
 export async function getDocument(slug) {
   const item = docsBySlug.get(slug);
   if (!item) return null;

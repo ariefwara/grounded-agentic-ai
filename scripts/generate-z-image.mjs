@@ -93,6 +93,17 @@ function requirePositiveInteger(value, name) {
   }
 }
 
+function greatestCommonDivisor(left, right) {
+  let a = Math.abs(left);
+  let b = Math.abs(right);
+  while (b) {
+    const next = a % b;
+    a = b;
+    b = next;
+  }
+  return a || 1;
+}
+
 async function falFetch(url, options = {}) {
   const key = process.env.FAL_KEY;
   if (!key) throw new Error("FAL_KEY is required.");
@@ -156,7 +167,8 @@ function buildInput({ prompt, width, height }, model) {
     }
     input.image_size = { width, height };
   } else if (properties.aspect_ratio) {
-    const ratio = `${width}:${height}`;
+    const divisor = greatestCommonDivisor(width, height);
+    const ratio = `${width / divisor}:${height / divisor}`;
     const accepted = properties.aspect_ratio.enum || [];
     if (accepted.length > 0 && !accepted.includes(ratio)) {
       throw new Error(`The selected endpoint does not accept aspect ratio ${ratio}.`);

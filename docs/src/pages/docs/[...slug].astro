@@ -1,6 +1,12 @@
 ---
 import DocsLayout from "../../layouts/DocsLayout.astro";
-import { getDocument } from "../../lib/docs.js";
+import { getDocument, getDocumentSlugs } from "../../lib/docs.js";
+
+export function getStaticPaths() {
+  return getDocumentSlugs().map((slug) => ({
+    params: { slug },
+  }));
+}
 
 const slug = Astro.params.slug || "product-scope";
 const document = await getDocument(slug);

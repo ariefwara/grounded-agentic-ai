@@ -1,11 +1,9 @@
 import { defineConfig } from "astro/config";
-import node from "@astrojs/node";
 
 export default defineConfig({
-  adapter: node({
-    mode: "standalone",
-  }),
-  output: "server",
+  site: "https://ariefwara.github.io",
+  base: process.env.DOCS_BASE_PATH || "/grounded-agentic-ai/",
+  output: "static",
   server: {
     host: true,
     port: 4321,
