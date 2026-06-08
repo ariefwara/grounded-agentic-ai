@@ -7,11 +7,12 @@ type DecisionResponse = {
 
 @Injectable({ providedIn: 'root' })
 export class EngineClient {
-  private readonly baseUrl = 'http://localhost:3000';
+  private readonly baseUrlPromise = this.loadBaseUrl();
   private readonly sessionId = this.getOrCreateSessionId();
 
   async sendMessage(message: string): Promise<string> {
-    const response = await fetch(`${this.baseUrl}/chat`, {
+    const baseUrl = await this.baseUrlPromise;
+    const response = await fetch(`${baseUrl}/chat`, {
       method: 'POST',
       headers: {
         'content-type': 'application/json',
@@ -46,5 +47,19 @@ export class EngineClient {
     const value = window.crypto.randomUUID();
     window.localStorage.setItem(key, value);
     return value;
+  }
+
+  private async loadBaseUrl(): Promise<string> {
+    try {
+      const response = await fetch('/runtime-config.json', { cache: 'no-store' });
+      if (response.ok) {
+        const config = (await response.json()) as { engineUrl?: string };
+        if (config.engineUrl) return config.engineUrl.replace(/\/$/, '');
+      }
+    } catch {
+      // Fall back to local development.
+    }
+
+    return 'http://localhost:3000';
   }
 }
