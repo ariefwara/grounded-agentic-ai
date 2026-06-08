@@ -1,4 +1,4 @@
-FROM node:20-alpine
+FROM node:22-alpine
 
 WORKDIR /app
 ENV NODE_ENV=production
@@ -11,7 +11,6 @@ COPY src ./src
 COPY config ./config
 COPY prompts ./prompts
 COPY policies ./policies
-COPY tools ./tools
 
 EXPOSE 3000
 

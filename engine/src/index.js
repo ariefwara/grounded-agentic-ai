@@ -1,29 +1,13 @@
-import { createDecisionEngine } from "./core/decision-engine.js";
 import { loadPolicyBundle } from "./core/policy-loader.js";
 import { loadEnvFiles } from "./config/env-loader.js";
-import { createLlmClient } from "./llm/llm-client.js";
 
-export { createDecisionEngine } from "./core/decision-engine.js";
 export { loadPolicyBundle } from "./core/policy-loader.js";
+export { createAdkRuntime } from "./adk/adk-runtime.js";
+export { createBusinessTools } from "./adk/business-tools.js";
+export { createCustomerServiceAgent } from "./adk/customer-service-agent.js";
 
 if (import.meta.url === `file://${process.argv[1]}`) {
   await loadEnvFiles();
   const policies = await loadPolicyBundle("policies/examples");
-  const engine = createDecisionEngine({ policies, llmClient: createLlmClient() });
-
-  const result = await engine.evaluate({
-    requestId: "demo-001",
-    channel: "web-chat",
-    user: {
-      identityConfidence: "verified_customer",
-      roles: ["customer"],
-      accountIds: ["acct_123"],
-    },
-    message: "Can I get a refund?",
-    subject: {
-      accountId: "acct_123",
-    },
-  });
-
-  console.log(JSON.stringify(result, null, 2));
+  console.log(JSON.stringify({ runtime: "google-adk", loadedPolicySections: Object.keys(policies) }, null, 2));
 }

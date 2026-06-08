@@ -1,9 +1,5 @@
 export function createExternalApi({ integrations = {}, env = process.env } = {}) {
   return {
-    async getContext({ capability, integrationId }) {
-      return await execute(integrationId, { capability });
-    },
-
     async queryData({ topic, integrationId }) {
       const result = await execute(integrationId, { topic });
       return {

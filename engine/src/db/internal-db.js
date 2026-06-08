@@ -22,12 +22,6 @@ export function createInternalDb({ config = {}, env = process.env } = {}) {
   }
 
   return {
-    async loadRequirementSchema(requestType) {
-      const schemas = await readConfiguredCollection("requirements");
-      const schema = schemas.find((item) => item.id === requestType);
-      return normalizeArray(schema?.requiredSlots, ["topic"]);
-    },
-
     async searchCustomers(identifiers = {}) {
       const values = Object.values(identifiers).filter(Boolean).map((value) => normalizeText(value));
       if (values.length === 0) return [];
@@ -42,12 +36,6 @@ export function createInternalDb({ config = {}, env = process.env } = {}) {
       if (!customerId) return null;
       const customers = await readConfiguredCollection("customers");
       return customers.find((customer) => customer.id === customerId) || null;
-    },
-
-    async loadPolicy(topic = "refund") {
-      const policies = await readConfiguredCollection("policies");
-      const policy = policies.find((item) => item.id === topic || item.topic === topic);
-      return policy?.text || policies.find((item) => item.id === "default")?.text || "";
     },
 
     async queryData({ topic }) {
@@ -120,10 +108,6 @@ export function createInternalDb({ config = {}, env = process.env } = {}) {
 async function readCollection(collection) {
   const snapshot = await collection.get();
   return snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
-}
-
-function normalizeArray(value, fallback) {
-  return Array.isArray(value) && value.length > 0 ? value : fallback;
 }
 
 function normalizeText(value) {

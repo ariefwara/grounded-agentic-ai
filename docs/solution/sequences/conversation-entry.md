@@ -19,29 +19,18 @@ sequenceDiagram
         Session-->>Engine: Empty session state
     end
 
-    Engine->>Engine: Build deterministic interpretation
-    alt Fast route is allowed
-        Engine->>Engine: Use deterministic intent, role, and entities
-    else Gemini routing is required
-        Engine->>Gemini: Classify message using channel, profile, and session
-        Gemini-->>Engine: Intent, role, and extracted entities
-        Engine->>Engine: Normalize result and prevent premature action routing
+    Engine->>Gemini: Run ADK agent with profile prompt and session context
+    Gemini-->>Engine: Direct answer or requested business tool call
+    opt Business tool requested
+        Engine->>Engine: Execute configured DB, API, verification, or action tool
+        Engine->>Session: Store tool state needed by the next turn
+        Engine->>Gemini: Continue agent loop with tool result
     end
-
-    Engine->>Arize: Evaluate classification locally and export trace when enabled
-    Arize-->>Engine: usable or review
-    alt Review
-        Engine->>Gemini: Compose one clarification question
-        Gemini-->>Engine: Clarification question
-        Engine->>Session: Save pending clarification and turn
-        Engine-->>User: Clarification question
-    else Usable
-        Engine->>Engine: Continue to pending-state or intent handler
-    end
+    Engine->>Arize: Evaluate final customer-facing answer
+    Arize-->>Engine: pass, review, or local fallback decision
+    Engine-->>User: Final answer only
 ```
 
 The chat endpoint returns only `requestId` and `answer`; the frontend does not receive route, evaluation, or internal participant details.
 
-The fast route is used only when the deterministic interpretation is considered sufficient. If a pending state exists, most messages still go through control-message inspection, except direct answers to pending verification.
-
-When Gemini labels a message as an action but the message is not an explicit configured confirmation, the engine changes the route to data retrieval. This keeps comparison and exploration separate from execution.
+Gemini now runs inside the ADK agent loop rather than a separate routing endpoint. The engine still owns the business tools and guardrails, so Gemini can request capability but cannot bypass configured data access, verification, or action-confirmation rules.

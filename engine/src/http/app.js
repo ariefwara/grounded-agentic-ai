@@ -1,15 +1,12 @@
 import express from "express";
 import { randomUUID } from "node:crypto";
-import { createDecisionEngine } from "../core/decision-engine.js";
 import { loadPolicyBundle } from "../core/policy-loader.js";
-import { createLlmClient } from "../llm/llm-client.js";
-import { createConversationEngine } from "../conversation/conversation-engine.js";
-import { createSessionStore } from "../session/session-store.js";
 import { createInternalDb } from "../db/internal-db.js";
 import { createExternalApi } from "../api/external-api.js";
 import { createInternalTools } from "../tools/internal-tools.js";
 import { createArizeEvaluator } from "../arize/arize-evaluator.js";
 import { loadEngineProfile } from "../config/engine-profiles.js";
+import { createAdkRuntime } from "../adk/adk-runtime.js";
 
 export async function createHttpApp({
   policyDir = "policies/examples",
@@ -18,17 +15,14 @@ export async function createHttpApp({
 } = {}) {
   const profile = loadEngineProfile(profileId);
   const policies = await loadPolicyBundle(policyDir);
-  const llmClient = createLlmClient();
   const arize = createArizeEvaluator();
-  const decisionEngine = createDecisionEngine({ policies, llmClient });
-  const conversationEngine = createConversationEngine({
-    llmClient,
-    sessionStore: createSessionStore(),
+  const adkRuntime = createAdkRuntime({
     db: createInternalDb({ config: profile.data }),
     api: createExternalApi({ integrations: profile.externalIntegrations }),
     internalTools: createInternalTools(),
     arize,
     profile,
+    policies,
   });
   const app = express();
   app.locals.arize = arize;
@@ -50,37 +44,19 @@ export async function createHttpApp({
     response.json({
       status: "ok",
       service: "engine",
+      runtime: "google-adk",
       profileId: profile.id,
       uptimeSeconds: Math.round((Date.now() - startedAt.getTime()) / 1000),
     });
   });
 
-  app.post("/decisions", async (request, response, next) => {
-    try {
-      const result = await decisionEngine.evaluate({
-        requestId: request.body.requestId ?? randomUUID(),
-        channel: request.body.channel ?? "web-chat",
-        user: request.body.user ?? { identityConfidence: "anonymous" },
-        message: request.body.message ?? "",
-        subject: request.body.subject ?? {},
-        profile,
-      });
-
-      response.json(result);
-    } catch (error) {
-      next(error);
-    }
-  });
-
   app.post("/chat", async (request, response, next) => {
     try {
-      const result = await conversationEngine.chat({
+      const result = await adkRuntime.chat({
         requestId: request.body.requestId ?? randomUUID(),
         sessionId: request.body.sessionId,
-        channel: request.body.channel ?? "web-chat",
         user: request.body.user ?? { identityConfidence: "anonymous" },
         message: request.body.message ?? "",
-        subject: request.body.subject ?? {},
       });
 
       response.json({

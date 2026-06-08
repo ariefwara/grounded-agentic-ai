@@ -1,9 +1,0 @@
-[
-  {
-    "id": "refund_eligibility_general",
-    "template": "Refund eligibility depends on the approved refund policy for your purchase. If your request meets the policy conditions, the refund can be reviewed through the supported channel.",
-    "requiredPhrases": [
-      "depends on the approved refund policy"
-    ]
-  }
-]

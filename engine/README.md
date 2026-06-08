@@ -1,12 +1,26 @@
 # Engine
 
-Policy-first Node.js engine for governed AI business communication.
+Policy-first engine for governed AI business communication.
 
 Run from this folder:
 
 ```bash
 npm test
 npm start
+```
+
+## Google ADK Runtime
+
+The `/chat` endpoint runs through Google ADK inside this engine. ADK owns the
+conversation session, Gemini agent loop, business-tool calls, and response
+guardrails. Express remains the HTTP boundary; there is no separate ADK
+application, wrapper, or parallel decision endpoint.
+
+```bash
+export ADK_MODEL=gemini-2.5-flash
+export GOOGLE_GENAI_USE_VERTEXAI=TRUE
+export GOOGLE_CLOUD_PROJECT=your-project-id
+export GOOGLE_CLOUD_LOCATION=global
 ```
 
 ## Profile
@@ -64,16 +78,6 @@ export INTERNAL_DB_PRELOAD=on
 export INTERNAL_DB_CACHE_TTL_MS=300000
 ```
 
-## Response Cache
-
-Relevant answer dan evidence answer cache aktif secara default.
-
-```bash
-export ENGINE_RESPONSE_CACHE=on
-export ENGINE_RESPONSE_CACHE_TTL_MS=300000
-export ENGINE_RESPONSE_CACHE_MAX_ENTRIES=200
-```
-
 ## External API
 
 External data/tools diarahkan lewat:
@@ -93,14 +97,15 @@ export PHOENIX_COLLECTOR_ENDPOINT=https://app.phoenix.arize.com
 export PHOENIX_API_KEY=your-phoenix-api-key
 ```
 
-Runtime decision tetap punya fallback lokal. Phoenix/Arize digunakan untuk observability dan online evaluation pada traces; evaluator task di Arize dapat dikonfigurasi untuk menilai spans yang dikirim.
+Guardrail ADK tetap punya fallback lokal. Phoenix/Arize digunakan untuk observability dan online evaluation pada traces; evaluator task di Arize dapat dikonfigurasi untuk menilai spans yang dikirim.
 
 ## Prompts
 
-Prompt Gemini disimpan di:
+Prompt ADK disimpan di:
 
 ```text
-prompts/<sequence-step>/*.prompt.md
+prompts/adk/*.prompt.md
 ```
 
-Setiap file berisi satu template prompt. Folder prompt mengikuti step sequence seperti `conversation-routing`, `data-retrieval`, dan `failure-refusal-recovery`. Engine memuat prompt lewat `src/prompts/prompt-loader.js`.
+Setiap file berisi satu template prompt. Engine memuat prompt lewat
+`src/prompts/prompt-loader.js`.

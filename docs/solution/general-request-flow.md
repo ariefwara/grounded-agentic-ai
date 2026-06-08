@@ -1,80 +1,42 @@
 # Current Conversation Flow
 
-This flow represents the conversation logic currently executed by the chat endpoint. It follows a session across multiple messages rather than treating each message independently.
+This flow represents the conversation logic currently executed by the chat endpoint. The engine now uses Google ADK as the active orchestration runtime, so the conversation is not routed through a separate local decision endpoint or legacy gate pipeline.
 
 ```mermaid
 flowchart TD
-    A([User sends message]) --> B[Load or create in-memory session]
-    B --> C[Build deterministic interpretation]
-    C --> D{Fast route allowed?}
-    D -->|No| E[Ask Gemini to classify intent and role]
-    D -->|Yes| F[Use deterministic interpretation]
-    E --> G[Run local classification evaluation and export trace when enabled]
-    F --> G
+    A([User sends message]) --> B[Engine receives POST /chat]
+    B --> C[Load active business profile]
+    C --> D[Load or create ADK session]
+    D --> E[Run Gemini agent with profile prompt and conversation context]
 
-    G --> H{Classification usable?}
-    H -->|No| I[Ask one clarification question]
-    I --> J[Save pending clarification]
-    J --> Z([Return answer])
+    E --> F{Need business capability?}
+    F -->|Business scope or policy context| G[Call get_business_context]
+    F -->|Products, records, schedules, policies, documents| H[Call DB-backed business tools]
+    F -->|External service needed| I[Call configured API tool]
+    F -->|Customer-specific data needed| J[Identify or verify customer]
+    F -->|Confirmed business action| K[Execute configured action]
+    F -->|No tool needed| L[Compose direct domain answer]
 
-    H -->|Yes| K{Cancel command?}
-    K -->|Yes| L[Clear pending request and collected slots]
-    L --> Z
-    K -->|No| M{Pending state exists?}
+    G --> E
+    H --> E
+    I --> E
+    J --> E
+    K --> M[Store exact action result message in ADK session state]
+    M --> N[Return exact action result]
+    L --> O[Run ADK response guardrail]
+    E --> O
 
-    M -->|Clarification| N[Merge answer with original request and clear pending state]
-    M -->|Customer context| O[Search customer using supplied identifier]
-    M -->|Verification| P[Compare answer with configured customer reference fields]
-    M -->|No pending state| Q{Selected intent}
-
-    N --> Q
-    O -->|One match| R[Save customer context in session]
-    O -->|No single match| S[Ask for one configured identifier]
-    S --> T[Save pending customer context]
-    T --> Z
-    R --> Z
-
-    P -->|Pass| U[Save passed verification]
-    P -->|Fail| V[Save failed verification]
-    U --> Z
-    V --> Z
-
-    Q -->|Small talk| W[Return profile welcome and available assistance]
-    Q -->|Relevant answer| X[Generate profile-relevant answer]
-    Q -->|Customer context| O
-    Q -->|Verification| Y[Load customer reference and ask verification question]
-    Q -->|Data retrieval| AA[Retrieve internal or external evidence]
-    Q -->|Document retrieval| AB[Retrieve matching document records]
-    Q -->|Action| AC[Execute configured action path]
-    Q -->|Unsupported| AD[Generate unsupported response]
-    Q -->|Anything else| I
-
-    Y --> AE[Save pending verification]
-    AE --> Z
-
-    AA -->|No evidence| AF[Generate recovery response and save pending clarification]
-    AA -->|Evidence found| AG[Compose answer from evidence and evaluate]
-    AB -->|No evidence| AF
-    AB -->|Evidence found| AH[Compose answer from excerpts and evaluate]
-
-    AC --> AI[Compose result response and evaluate]
-
-    W --> AJ[Save conversation turn]
-    X --> AJ
-    AD --> AJ
-    AF --> AJ
-    AG --> AJ
-    AH --> AJ
-    AI --> AJ
-    AJ --> Z
+    O -->|Pass| P[Export Arize/Phoenix evaluator trace when enabled]
+    O -->|Implementation detail leak| Q[Replace with customer-safe response]
+    Q --> P
+    N --> P
+    P --> R([Return answer only])
 ```
 
-The engine first loads the session, which currently lives in the engine process. The session contains recent turns, one pending state, collected slots, resolved customer context, and verification status.
+The HTTP app is intentionally thin. It loads the selected profile, DB adapter, external integrations, internal tools, policy bundle, Arize evaluator, and ADK runtime. The `/chat` endpoint returns only the customer-facing answer.
 
-Routing starts with deterministic rules. Cancellation, direct pending verification answers, greetings, configured action confirmations, obvious lookups, and other clear intents can avoid a Gemini routing call. Ambiguous messages are classified by Gemini using the current profile and session.
+ADK owns the session and Gemini agent loop. The agent receives the external prompt template from `engine/prompts/adk/customer-service-agent.prompt.md`, then decides when to call business tools. Tool calls are still owned by the engine: DB retrieval, customer identification, verification, external API access, internal method calls, and business action execution are implemented as engine functions exposed to ADK.
 
-Pending customer context and verification states take priority over new fulfillment work. A request may also be redirected to customer identification before retrieval when the active profile requires identity for customer-specific data.
+Policies are now blended into the ADK path as instruction context, tool constraints, and response guardrails. For example, protected data is blocked until the session has the required customer identification and verification state, and business actions require explicit customer confirmation before execution.
 
-The active fulfillment paths are profile welcome, relevant answer, customer context resolution, verification, data retrieval, document retrieval, action execution, unsupported response, and clarification. Every returned message is stored as a conversation turn. Only the latest 20 turns are retained.
-
-The current clarification merge stores a merged request topic and clears the pending clarification. It does not yet rerun the whole turn from the beginning. Slot-filling utilities exist in the engine, but the current router does not create a slot-filling pending state, so slot filling is not presented as an active Solution flow.
+Arize/Phoenix is attached to the active ADK path through guardrail and action-result evaluation. It records evaluator traces when enabled, while local fallback decisions keep the runtime usable without an external evaluator.

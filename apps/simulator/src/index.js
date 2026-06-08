@@ -33,13 +33,6 @@ async function main() {
     EXTERNAL_API_URL: process.env.EXTERNAL_API_URL || "http://localhost:3002",
     FLIGHT_API_URL: process.env.FLIGHT_API_URL || "http://localhost:3002",
     PHARMACY_PRESCRIBER_API_URL: process.env.PHARMACY_PRESCRIBER_API_URL || "http://localhost:3002",
-    GATE_SEMANTIC_QUESTION_MATCH: "off",
-    GATE_INFORMATION_CLASSIFICATION: "off",
-    GATE_INFORMATION_ELIGIBILITY: "off",
-    GATE_ACTION_ELIGIBILITY: "off",
-    GATE_ANSWER_BOUNDARY: "off",
-    GATE_LLM_RESPONSE: "on",
-    GATE_RESPONSE_EVALUATION: "off",
     ENGINE_TIMING_LOG: "on",
   });
   startProcess("web-chat", "npm", ["start"], `${ROOT}/apps/web-chat`);

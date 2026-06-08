@@ -11,8 +11,6 @@ services:
       ENGINE_PROFILE_ID: ${ENGINE_PROFILE_ID:-generic}
       LLM_PROVIDER: ${LLM_PROVIDER:-vertex}
       LLM_API_KEY: ${LLM_API_KEY:-}
-      LLM_MODEL: ${LLM_MODEL:-}
-      LLM_BASE_URL: ${LLM_BASE_URL:-}
       LLM_TEMPERATURE: ${LLM_TEMPERATURE:-0.2}
       GEMINI_API_KEY: ${GEMINI_API_KEY:-}
       GEMINI_MODEL: ${GEMINI_MODEL:-}
@@ -22,12 +20,13 @@ services:
       FIRESTORE_SIMULATION_ID: ${FIRESTORE_SIMULATION_ID:-retail-refund}
       VERTEX_LOCATION: ${VERTEX_LOCATION:-global}
       VERTEX_TEXT_MODEL: ${VERTEX_TEXT_MODEL:-gemini-2.5-flash}
+      ADK_MODEL: ${ADK_MODEL:-gemini-2.5-flash}
+      GOOGLE_GENAI_USE_VERTEXAI: ${GOOGLE_GENAI_USE_VERTEXAI:-TRUE}
+      GOOGLE_CLOUD_PROJECT: ${GOOGLE_CLOUD_PROJECT:-ariefwrz}
+      GOOGLE_CLOUD_LOCATION: ${GOOGLE_CLOUD_LOCATION:-global}
       EXTERNAL_API_URL: ${EXTERNAL_API_URL:-http://mock-api:3002}
       FLIGHT_API_URL: ${FLIGHT_API_URL:-http://mock-api:3002}
       PHARMACY_PRESCRIBER_API_URL: ${PHARMACY_PRESCRIBER_API_URL:-http://mock-api:3002}
-      ENGINE_RESPONSE_CACHE: ${ENGINE_RESPONSE_CACHE:-on}
-      ENGINE_RESPONSE_CACHE_TTL_MS: ${ENGINE_RESPONSE_CACHE_TTL_MS:-300000}
-      ENGINE_RESPONSE_CACHE_MAX_ENTRIES: ${ENGINE_RESPONSE_CACHE_MAX_ENTRIES:-200}
       INTERNAL_DB_CACHE: ${INTERNAL_DB_CACHE:-on}
       INTERNAL_DB_PRELOAD: ${INTERNAL_DB_PRELOAD:-on}
       INTERNAL_DB_CACHE_TTL_MS: ${INTERNAL_DB_CACHE_TTL_MS:-300000}
@@ -65,24 +64,6 @@ services:
     environment:
       NODE_ENV: production
       ENGINE_URL: http://engine:3000
-    depends_on:
-      - engine
-
-  adk-agent:
-    build:
-      context: ./apps/adk-agent
-    container_name: adk-agent
-    environment:
-      NODE_ENV: production
-      ENGINE_URL: http://engine:3000
-      GEMINI_API_KEY: ${GEMINI_API_KEY:-}
-      GOOGLE_GENAI_API_KEY: ${GOOGLE_GENAI_API_KEY:-${GEMINI_API_KEY:-}}
-      GOOGLE_GENAI_USE_VERTEXAI: ${GOOGLE_GENAI_USE_VERTEXAI:-TRUE}
-      GOOGLE_CLOUD_PROJECT: ${GOOGLE_CLOUD_PROJECT:-${GCP_PROJECT:-ariefwrz}}
-      GOOGLE_CLOUD_LOCATION: ${GOOGLE_CLOUD_LOCATION:-global}
-      ADK_MODEL: ${ADK_MODEL:-gemini-2.5-flash}
-    ports:
-      - "8000:8000"
     depends_on:
       - engine
 

@@ -1,14 +1,8 @@
 import { readFile } from "node:fs/promises";
 import path from "node:path";
-import { validatePolicyBundle } from "./policy-validator.js";
 
 const POLICY_FILES = {
-  canonicalQuestions: "canonical-questions.json",
   standardResponses: "standard-responses.json",
-  informationClasses: "information-classes.json",
-  eligibilityRules: "eligibility-rules.json",
-  answerBoundaries: "answer-boundaries.json",
-  actionRegistry: "action-registry.json",
 };
 
 export async function loadPolicyBundle(baseDir) {
@@ -22,4 +16,19 @@ export async function loadPolicyBundle(baseDir) {
   const bundle = Object.fromEntries(entries);
   validatePolicyBundle(bundle);
   return bundle;
+}
+
+function validatePolicyBundle(bundle) {
+  if (!Array.isArray(bundle.standardResponses)) {
+    throw new Error("Policy bundle is missing array: standardResponses");
+  }
+
+  for (const item of bundle.standardResponses) {
+    if (!item.id || typeof item.id !== "string") {
+      throw new Error("Every standardResponses item must have a string id.");
+    }
+    if (!item.message || typeof item.message !== "string") {
+      throw new Error("Every standardResponses item must have a string message.");
+    }
+  }
 }
