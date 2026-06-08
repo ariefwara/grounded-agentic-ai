@@ -68,6 +68,24 @@ services:
     depends_on:
       - engine
 
+  adk-agent:
+    build:
+      context: ./apps/adk-agent
+    container_name: adk-agent
+    environment:
+      NODE_ENV: production
+      ENGINE_URL: http://engine:3000
+      GEMINI_API_KEY: ${GEMINI_API_KEY:-}
+      GOOGLE_GENAI_API_KEY: ${GOOGLE_GENAI_API_KEY:-${GEMINI_API_KEY:-}}
+      GOOGLE_GENAI_USE_VERTEXAI: ${GOOGLE_GENAI_USE_VERTEXAI:-TRUE}
+      GOOGLE_CLOUD_PROJECT: ${GOOGLE_CLOUD_PROJECT:-${GCP_PROJECT:-ariefwrz}}
+      GOOGLE_CLOUD_LOCATION: ${GOOGLE_CLOUD_LOCATION:-global}
+      ADK_MODEL: ${ADK_MODEL:-gemini-2.5-flash}
+    ports:
+      - "8000:8000"
+    depends_on:
+      - engine
+
   mock-api:
     build:
       context: ./apps/mock-api

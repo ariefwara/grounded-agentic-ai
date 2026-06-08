@@ -30,6 +30,7 @@ Across these scenarios, the goal is not only to answer questions. The goal is to
 ## Stack
 
 - **Conversation Engine** manages conversation flow, session state, policy checks, internal tools, external API calls, and action confirmation.
+- **Google ADK** provides an Agent Builder-compatible wrapper that exposes the engine through an ADK agent and function tool.
 - **Gemini** helps understand each customer message, ask follow-up questions, compare options, and compose natural responses.
 - **Firestore** stores business data for each profile, including products, schedules, records, policies, and customer context.
 - **Google Cloud Run** can deploy the web chat, engine, mock API, and documentation as services.
@@ -41,6 +42,7 @@ There is no root `package.json`. Each npm project owns its own dependencies.
 
 ```text
 engine/          Express API, orchestration, profiles, prompts, policies, data access
+apps/adk-agent/ Google ADK wrapper agent for Agent Builder compatibility
 apps/web-chat/  Angular chat interface with per-business UI profiles
 apps/simulator/ Playwright simulator and Firestore seed scenarios
 apps/mock-api/  Mock external APIs/tools for local simulations
@@ -81,7 +83,8 @@ Install dependencies inside each project:
 
 ```bash
 cd engine && npm install
-cd ../apps/web-chat && npm install
+cd ../apps/adk-agent && npm install
+cd ../web-chat && npm install
 cd ../simulator && npm install
 cd ../mock-api && npm install
 cd ../../docs && npm install
@@ -101,6 +104,13 @@ Start the engine:
 ```bash
 cd engine
 ENGINE_PROFILE_ID=retail npm start
+```
+
+Run the ADK wrapper:
+
+```bash
+cd apps/adk-agent
+ENGINE_URL=http://localhost:3000 npm run adk:run
 ```
 
 Start the web chat:
