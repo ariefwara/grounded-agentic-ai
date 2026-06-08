@@ -16,6 +16,7 @@
     "@arizeai/phoenix-otel": "^1.0.2",
     "@google-cloud/firestore": "^8.6.0",
     "express": "^5.2.1",
+    "google-auth-library": "^10.7.0",
     "yaml": "^2.9.0"
   }
 }

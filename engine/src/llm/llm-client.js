@@ -1,4 +1,4 @@
-import { spawnSync } from "node:child_process";
+import { GoogleAuth } from "google-auth-library";
 import { renderPrompt } from "../prompts/prompt-loader.js";
 
 export function createLlmClient(env = process.env) {
@@ -152,6 +152,10 @@ function createGeminiClient({ apiKey, model, baseUrl, temperature }) {
 }
 
 function createVertexClient({ projectId, location, model, temperature }) {
+  const auth = new GoogleAuth({
+    scopes: ["https://www.googleapis.com/auth/cloud-platform"],
+  });
+
   return {
     enabled: true,
     async generateStructured(input) {
@@ -162,7 +166,7 @@ function createVertexClient({ projectId, location, model, temperature }) {
       return parseStructuredText(text, input.fallback);
     },
     async generateAnswer(input) {
-      const token = getGcloudAccessToken();
+      const token = await getGoogleAccessToken(auth);
       const host = location === "global" ? "aiplatform.googleapis.com" : `${location}-aiplatform.googleapis.com`;
       const response = await fetch(
         `https://${host}/v1/projects/${projectId}/locations/${location}/publishers/google/models/${model}:generateContent`,
@@ -193,16 +197,11 @@ function createVertexClient({ projectId, location, model, temperature }) {
   };
 }
 
-function getGcloudAccessToken() {
-  const result = spawnSync("gcloud", ["auth", "print-access-token"], {
-    encoding: "utf8",
-  });
-
-  if (result.status !== 0) {
-    throw new Error("Unable to get gcloud access token.");
-  }
-
-  return result.stdout.trim();
+async function getGoogleAccessToken(auth) {
+  const client = await auth.getClient();
+  const token = await client.getAccessToken();
+  if (!token?.token) throw new Error("Unable to get Google access token.");
+  return token.token;
 }
 
 function buildMessages(input) {
