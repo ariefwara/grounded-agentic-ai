@@ -12,8 +12,15 @@ export class ChatProfileService {
   }
 
   private async loadProfile(): Promise<ChatProfile> {
-    const queryProfileId = new URLSearchParams(window.location.search).get('profile');
-    const profileId = queryProfileId || window.localStorage.getItem('web-chat-profile-id') || 'generic';
+    const searchParams = new URLSearchParams(window.location.search);
+    const queryProfileId = searchParams.get('profile');
+    if (!queryProfileId) {
+      searchParams.set('profile', 'retail');
+      window.location.replace(`${window.location.pathname}?${searchParams}${window.location.hash}`);
+      await new Promise<never>(() => undefined);
+    }
+
+    const profileId = queryProfileId || 'retail';
     window.localStorage.setItem('web-chat-profile-id', profileId);
 
     const baseUrl = `/config/profiles/${encodeURIComponent(profileId)}`;
