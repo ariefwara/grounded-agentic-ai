@@ -45,16 +45,6 @@ apps/mock-api/  Mock external APIs/tools for local simulations
 docs/           Astro documentation site
 ```
 
-## Technical Documentation
-
-Detailed technical documentation, feature explanations, and solution flows are published through Firebase Hosting:
-
-```text
-https://agentic-ai-e6e15.web.app
-```
-
-The source for that documentation lives in `docs/`.
-
 ## Requirements
 
 - npm
