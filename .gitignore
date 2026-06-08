@@ -24,6 +24,7 @@ assets/wallpapers/
 
 # Local video publishing / voiceover generation helpers, not needed to run
 # the competition project.
+scripts/
 scripts/upload-youtube-studio.mjs
 scripts/generate-elevenlabs-voiceover.mjs
 scripts/record-simulations.mjs
