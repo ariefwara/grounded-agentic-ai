@@ -1,10 +1,12 @@
-# Agentic AI for Business
+# AI Customer Service Engine
 
 Most businesses already meet customers online, but many still cannot guide them the way a good human service team would.
 
 Human support understands context, but it is expensive, limited by operating hours, and difficult to scale. Traditional chatbots are always available, but they often depend on menus and scripted flows.
 
 This project is an agentic AI customer-service system that helps businesses turn online conversations into guided decisions and completed actions.
+
+Repository: https://github.com/ariefwara/ai-customer-service-engine
 
 ## What It Does
 
