@@ -25,7 +25,7 @@ Across these scenarios, the goal is not only to answer questions. The goal is to
 
 ## Stack
 
-- **Node.js Engine** manages conversation flow, session state, policy checks, internal tools, external API calls, and action confirmation.
+- **Conversation Engine** manages conversation flow, session state, policy checks, internal tools, external API calls, and action confirmation.
 - **Gemini** helps understand each customer message, ask follow-up questions, compare options, and compose natural responses.
 - **Firestore** stores business data for each profile, including products, schedules, records, policies, and customer context.
 - **Google Cloud Run** can deploy the web chat, engine, mock API, and documentation as services.
@@ -55,7 +55,6 @@ The source for that documentation lives in `docs/`.
 
 ## Requirements
 
-- Node.js 20+
 - npm
 - Docker, optional
 - Google Cloud CLI, when using Firestore
