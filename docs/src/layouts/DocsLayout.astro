@@ -4,6 +4,7 @@ import "../styles/global.css";
 
 const { activeSlug, title } = Astro.props;
 const docsPath = (slug) => `${import.meta.env.BASE_URL}docs/${slug}`.replace(/\/{2,}/g, "/");
+const siteTitle = "AI Customer Service Engine";
 ---
 
 <!doctype html>
@@ -11,14 +12,14 @@ const docsPath = (slug) => `${import.meta.env.BASE_URL}docs/${slug}`.replace(/\/
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
-    <meta name="description" content="AI Assistant documentation" />
-    <title>{title} | AI Assistant Docs</title>
+    <meta name="description" content="AI Customer Service Engine documentation by Arief Warazuhudien" />
+    <title>{title} | {siteTitle}</title>
   </head>
   <body>
     <header class="topbar">
       <a class="brand" href={docsPath("product-scope")}>
         <span class="brand-mark">AI</span>
-        <span>AI Assistant Docs</span>
+        <span>{siteTitle}</span>
       </a>
       <button class="menu-button" type="button" aria-label="Toggle navigation" data-menu-button>
         <span></span><span></span><span></span>
@@ -51,6 +52,13 @@ const docsPath = (slug) => `${import.meta.env.BASE_URL}docs/${slug}`.replace(/\/
         <article class="doc-content">
           <slot />
         </article>
+        <footer class="doc-footer">
+          <p>
+            Created by <strong>Arief Warazuhudien</strong>.
+            Visit <a href="https://www.ariefw.com" rel="noreferrer">ariefw.com</a>
+            or contact via <a href="https://my.linkedin.com/in/ariefwara" rel="noreferrer">LinkedIn</a>.
+          </p>
+        </footer>
       </main>
     </div>
 

@@ -45,10 +45,10 @@ docs/           Astro documentation site
 
 ## Technical Documentation
 
-Detailed technical documentation, feature explanations, and solution flows are published through GitHub Pages:
+Detailed technical documentation, feature explanations, and solution flows are published through Firebase Hosting:
 
 ```text
-https://ariefwara.github.io/grounded-agentic-ai/
+https://agentic-ai-e6e15.web.app
 ```
 
 The source for that documentation lives in `docs/`.
@@ -170,6 +170,14 @@ SIMULATOR_SEED_ONLY=1 npm start -- chasewood-bank
 
 ## Documentation
 
+Published documentation:
+
+```text
+https://agentic-ai-e6e15.web.app
+```
+
+Run locally:
+
 ```bash
 cd docs
 npm run dev
@@ -186,6 +194,15 @@ Build and serve:
 ```bash
 npm run build
 npm start
+```
+
+Deploy to Firebase Hosting:
+
+```bash
+cd docs
+DOCS_BASE_PATH=/ npm run build
+cd ..
+npx firebase-tools deploy --only hosting --project agentic-ai-e6e15
 ```
 
 ## Tests

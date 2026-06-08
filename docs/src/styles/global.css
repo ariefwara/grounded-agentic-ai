@@ -192,6 +192,25 @@ body {
   max-width: 100%;
 }
 
+.doc-footer {
+  width: 100%;
+  max-width: 82rem;
+  margin-top: 3rem;
+  border-top: 1px solid #d9dee5;
+  padding-top: 1rem;
+  color: #5d6873;
+  font-size: 0.88rem;
+}
+
+.doc-footer p {
+  margin: 0;
+}
+
+.doc-footer a {
+  color: #08776a;
+  font-weight: 700;
+}
+
 .menu-button {
   display: none;
 }
